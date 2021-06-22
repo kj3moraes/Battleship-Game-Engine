@@ -6,6 +6,7 @@ This repository contains the code for a Human to play 3 different engines for Ba
 2. Intermediate-Adversary - places ships randomly, attacks randomly but remembers ships positions and increases attacks accoprdingly
 3. Boogeyman - plays perfectly via the battleship playing algorithm
 
+(TO BE COMPLETED)
 
 
 ## How to Play
@@ -15,10 +16,9 @@ This is a text-based game engine that is implemented in Java. The rules of the g
   * `start` - starts the **Human vs. Machine** match
   * `exit` - terminates the program
 * Menu 2 (after `start`)
-  * fk
-
-The documentation for the various parts of the code are found within the markdown files in the respective folders and the comments in the code.    
-
+  * fk (TO BE COMPLETED)
+The documentation for the various parts of the code are found within the markdown files in the respective folders and the comments in the code. A final PDF will be made detailing the algorithm implemented for Boogeyman and some aspects of the code
+(TO BE COMPLETED)
 
 
 ## References 
