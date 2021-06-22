@@ -1,9 +1,10 @@
-package battleship;
-import java.util.Arrays;
+
+import Structures.Battlefield;
+import Structures.Ship;
 import java.util.Scanner;
 import static java.util.stream.IntStream.range;
 
-public class Main {
+public class Battleship {
     public static void main(String[] args) {
 
         Battlefield p1 = new Battlefield();
@@ -71,7 +72,7 @@ public class Main {
 
     private static void promptEnterKey() {
         System.out.println("Press Enter and pass the move to another player");
-        new Scanner(System.in);.nextLine();
+        new Scanner(System.in).nextLine();
         clearScreen();
     }
 
