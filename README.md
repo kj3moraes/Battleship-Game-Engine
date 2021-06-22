@@ -23,4 +23,6 @@ The documentation for the various parts of the code are found within the markdow
 
 ## References 
 [1] ![What is the best strategy to win in the famous board game Battleship?](https://www.quora.com/What-is-the-best-strategy-to-win-in-the-famous-board-game-Battleship)  
-[2] ![Crombez, L., Fonseca, G.D., & Gérard, Y. (2021). Efficient Algorithms for Battleship. FUN.](https://arxiv.org/pdf/2004.07354.pdf)
+[2] ![Crombez, L., Fonseca, G.D., & Gérard, Y. (2021). Efficient Algorithms for Battleship. FUN.](https://arxiv.org/pdf/2004.07354.pdf)  
+[3] ![Algorithm for positioning ships in Battleship game](https://stackoverflow.com/questions/10842571/algorithm-for-positioning-ships-in-battleship-game)  
+[4] f
