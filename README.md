@@ -5,6 +5,20 @@ This repository contains the code for a Human to play 3 different engines for Ba
 3. Boogeyman - plays perfectly via the battleship playing algorithm
 
 
+
+## How to Play
+This is a text-based game engine that is implemented in Java. The rules of the game are the same as the official version given by ![Hasbro](https://www.hasbro.com/common/instruct/Battleship.PDF). For this game, the commands to play are as follows :
+
+* Menu 1 
+  * `start` - starts the **Human vs. Machine** match
+  * `exit` - terminates the program
+* Menu 2 (after `start`)
+  * fk
+
+The documentation for the various parts of the code are found within the markdown files in the respective folders and the comments in the code.    
+
+
+
 ### References 
-[1] ![What is the best strategy to win in the famous board game Battleship?](https://www.quora.com/What-is-the-best-strategy-to-win-in-the-famous-board-game-Battleship)
+[1] ![What is the best strategy to win in the famous board game Battleship?](https://www.quora.com/What-is-the-best-strategy-to-win-in-the-famous-board-game-Battleship)  
 [2] ![Crombez, L., Fonseca, G.D., & Gérard, Y. (2021). Efficient Algorithms for Battleship. FUN.](https://arxiv.org/pdf/2004.07354.pdf)
