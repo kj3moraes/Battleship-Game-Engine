@@ -28,6 +28,7 @@ public class Battleship {
 
         // PLAYER 2 NAVY SETUP
         System.out.println("\nPlayer 2, place your ships on the game field");
+        p2.printBattlefield(false);
         for (int i = 0; i < 5; i++) {
             ships[i].placeShip(p2);
             p2.printBattlefield(false);
