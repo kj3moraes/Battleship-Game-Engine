@@ -3,20 +3,26 @@
 # Battleship-Game-Engine Guide
 This is a PvE style Battleship game that allows the user to choose which Engine they want to go up against
 
-## How to Play
-This is a text-based game engine that is implemented in Java. The rules of the game are the same as the official 
+## How-to-Play
+This guides the reader on how to use the Battleship text-based game engine. The rules of the game are the same as the official 
 version given by [Hasbro](https://www.hasbro.com/common/instruct/Battleship.pdf). For this game, the commands to play 
 are as follows :
 
-* Menu 1 
+* Menu 1 _[ACTION MENU]_
   * `start` - starts the **Human vs. Machine** match
   * `exit` - terminates the program
-* Menu 2 (after `start`)
-  * fk (TO BE COMPLETED)
+* Menu 2 (after `start`) _[ENGINE SELECTION MENU]_
+  * [N] Naive-Solver
+  * [I] Intermediate-Adversary
+  * [B] Boogeyman
   
----
-## How-To-Play
-This guides the reader on how to use the Battleship text-based game engine. This is a classic PvP match consisting of 2 parts - Setup and Wartime.
+Type any one of the above letters to access that engine to play with. If any other letter is typed then the 
+appropriate error message is displayed and the menu is shown again. 
+
+### Game Starts
+Once again this consists of two parts - Setup and Wartime. The Human will always go as Player 1. However, if the user
+wants they are free to modify the source code in the `Battleship.java` file to switch up the Players or add a menu.
+Player 2's actions are completely automated (obviously). 
 
 #### Setup
 During setup, Player 1 is prompted first to place his/her ships on the battlefield. When prompted to do so a picture of the current battlefield arrangement will be shown and the user must type the first coordinate on the first line and the second coordinate on the second line.
@@ -100,7 +106,7 @@ H ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 I O O O O ~ ~ ~ ~ ~ ~ 
 J ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
 
-Player 2, it's your turn:
+Player 1, it's your turn:
 a2
 
   1 2 3 4 5 6 7 8 9 10 
