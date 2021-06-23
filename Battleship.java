@@ -45,7 +45,7 @@ public class Battleship {
             System.out.println("Player 1, it's your turn:");
             firingASalvo(p2);
 
-            if (!isNavyAfloat(p2)) {
+            if (!p2.isNavyAfloat()) {
                 didP1Win = true;
                 break;
             }
@@ -57,7 +57,7 @@ public class Battleship {
             System.out.println("Player 2, it's your turn:");
             firingASalvo(p1);
 
-            if (!isNavyAfloat(p1))
+            if (!p1.isNavyAfloat())
                 break;
             else
                 promptEnterKey();
@@ -85,16 +85,6 @@ public class Battleship {
             System.out.print("-");
         }
     }
-
-    protected static boolean isNavyAfloat(Battlefield bf) {
-        for (char[] row : bf.battlefield) {
-            for (char status : row) {
-                if (status == 'O')
-                    return true;
-            }
-        }
-        return false;
-    }
     
     protected static void firingASalvo(Battlefield bf) {
         Scanner num = new Scanner(System.in);
@@ -109,16 +99,16 @@ public class Battleship {
                 continue;
             }
 
-            char status = bf.battlefield[rowCoordinate - 65][columnCoordinate - 1];
-            if (status == 'O' || status == 'X') {
-                bf.battlefield[rowCoordinate - 65][columnCoordinate - 1] = 'X';
+            char status = bf.salvoStatus(rowCoordinate - 65, columnCoordinate - 1);
+            if (status == bf.SHIP || status == bf.HIT) {
+                bf.placeResultOfSalvo(rowCoordinate - 65, columnCoordinate - 1, bf.HIT);
                 bf.printBattlefield(true);
-                if (isSunken(rowCoordinate, columnCoordinate, bf)) {
+                if (isSunken(rowCoordinate, columnCoordinate, bf))
                     System.out.println("You sank a ship!");
-                }
-                else System.out.println("You hit a ship! ");
-            } else if (status == '~' || status == 'M') {
-                bf.battlefield[rowCoordinate - 65][columnCoordinate - 1] = 'M';
+                else
+                    System.out.println("You hit a ship! ");
+            } else if (status == bf.WATER || status == bf.MISS) {
+                bf.placeResultOfSalvo(rowCoordinate - 65, columnCoordinate - 1, bf.MISS);
                 bf.printBattlefield(true);
                 System.out.println("You missed!");
             }

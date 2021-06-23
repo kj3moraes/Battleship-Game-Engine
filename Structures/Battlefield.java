@@ -1,15 +1,58 @@
 package Structures;
 import java.util.Arrays;
 public class Battlefield {
-    public char[][] battlefield;
+    private char[][] battlefield;
+    public final char HIT;
+    public final char MISS;
+    public final char SHIP;
+    public final char WATER;
 
     public Battlefield() {
         battlefield  = new char[10][10];
-        
+        this.HIT = 'X';
+        this.MISS = 'M';
+        this.WATER = '~';
+        this.SHIP = 'O';
+
         // FOG OF WAR
         for (char[] row : battlefield) {
-            Arrays.fill(row, '~');
+            Arrays.fill(row, WATER);
         }
+    }
+
+    public Battlefield(char HIT, char MISS, char WATER, char SHIP) {
+        battlefield  = new char[10][10];
+        this.HIT = HIT;
+        this.MISS = MISS;
+        this.WATER = WATER;
+        this.SHIP = SHIP;
+
+        // FOG OF WAR
+        for (char[] row : battlefield) {
+            Arrays.fill(row, WATER);
+        }
+    }
+
+    public boolean isHit(int row, int col) {
+        return true;
+    }
+
+    public void placeResultOfSalvo(int row, int col, char result) {
+        battlefield[row][col] = result;
+    }
+
+    public char salvoStatus(int row, int col) {
+        return battlefield[row][col];
+    }
+
+    public boolean isNavyAfloat() {
+        for (char[] row : battlefield) {
+            for (char status : row) {
+                if (status == 'O')
+                    return true;
+            }
+        }
+        return false;
     }
 
     public void printBattlefield(boolean isWartime) {

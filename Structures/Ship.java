@@ -45,7 +45,7 @@ public class Ship {
 
             for (int i = rowOfFirst - 65; i <= rowOfSecond - 65; i++) {
                 for (int j = columnOfFirst - 1; j < columnOfSecond; j++) {
-                    bf.battlefield[i][j] = 'O';
+                    bf.placeResultOfSalvo(i,j,'O');
                 }
             }
             break;
