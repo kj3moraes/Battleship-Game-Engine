@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://raw.githubusercontent.com/kj3moraes/Battleship-Game-Engine/main/LICENSE?token=AGECP4XVDS6TJ6IWA3MAF7DA3NEZA)
+
 # Battleship-Game-Engine
 This repository contains the code for a Human to play 3 different engines for Battleship. The engines are 
 1. Naive-Solver - places ships randomly, attacks randomly and does not learn about ships positions

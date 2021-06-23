@@ -1,6 +1,4 @@
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://raw.githubusercontent.com/kj3moraes/Battleship-Game-Engine/main/LICENSE?token=AGECP4XVDS6TJ6IWA3MAF7DA3NEZA)  
-
-# Battleship-Game-Engine Guide
+# Battleship Playing Guide
 This is a PvE style Battleship game that allows the user to choose which Engine they want to go up against
 
 ## How-to-Play
