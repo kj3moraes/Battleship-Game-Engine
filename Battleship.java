@@ -1,6 +1,6 @@
 
-import Structures.Battlefield;
-import Structures.Ship;
+import Services.Battlefield;
+
 import java.util.Scanner;
 import static java.util.stream.IntStream.range;
 

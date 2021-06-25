@@ -1,7 +1,7 @@
 package Engines;
 
-import Structures.Battlefield;
-import Structures.Ship;
+import Services.Battlefield;
+import Services.Ship;
 
 public abstract class Player {
     String name;
@@ -17,9 +17,7 @@ public abstract class Player {
         arena = new Battlefield();
     }
 
-    protected abstract void placeShip(Ship s);
+    public abstract void placeShip(Ship s);
 
     public abstract void fireASalvo();
-
-    public abstract boolean isMyNavyAfloat();
 }
