@@ -1,10 +1,11 @@
 package Engines;
 
 import Structures.Battlefield;
+import Structures.Ship;
 
 public abstract class Player {
     String name;
-    private Battlefield arena;
+    Battlefield arena;
 
     public Player() {
         name = "Luke Skywalker";
@@ -15,6 +16,8 @@ public abstract class Player {
         this.name = name;
         arena = new Battlefield();
     }
+
+    protected abstract void placeShip(Ship s);
 
     public abstract void fireASalvo();
 

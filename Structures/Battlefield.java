@@ -34,7 +34,7 @@ public class Battlefield {
     }
 
     public boolean isHit(int row, int col) {
-        return true;
+        return battlefield[row][col] == HIT;
     }
 
     public void placeResultOfSalvo(int row, int col, char result) {
@@ -155,5 +155,9 @@ public class Battlefield {
             }
         }
         return false;
+    }
+
+    protected boolean isSunken(char rowCo, int columnCo) {
+        return !isTouching(rowCo, rowCo, columnCo, columnCo, true);
     }
 }

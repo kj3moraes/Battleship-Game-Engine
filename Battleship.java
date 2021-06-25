@@ -7,14 +7,9 @@ import static java.util.stream.IntStream.range;
 public class Battleship {
     public static void main(String[] args) {
 
-        Battlefield p1 = new Battlefield();
+/*        Battlefield p1 = new Battlefield();
         Battlefield p2 = new Battlefield();
 
-        final Ship[] ships = {new Ship("Aircraft Carrier", 5),
-                new Ship("Battleship", 4),
-                new Ship("Submarine", 3),
-                new Ship("Cruiser", 3),
-                new Ship("Destroyer", 2)};
 
         // PLAYER 1 NAVY SETUP
         System.out.println("\nPlayer 1, place your ships on the game field");
@@ -32,14 +27,15 @@ public class Battleship {
         for (int i = 0; i < 5; i++) {
             ships[i].placeShip(p2);
             p2.printBattlefield(false);
-        }
+        }*/
 
-        promptEnterKey();
+       /* promptEnterKey();
 
         //WARTIME
         System.out.println("The game starts!");
         boolean didP1Win = false;
         while(true) {
+            // PLAYER 1's turn
             p2.printBattlefield(true);
             printDivider();
             p1.printBattlefield(false);
@@ -51,6 +47,7 @@ public class Battleship {
                 break;
             }
 
+            // PLAYER 2's TURN
             promptEnterKey();
             p1.printBattlefield(true);
             printDivider();
@@ -62,12 +59,12 @@ public class Battleship {
                 break;
             else
                 promptEnterKey();
-        }
-        System.out.println("You sank the last ship. You won. Congratulations!");
+        }*/
+/*        System.out.println("You sank the last ship. You won. Congratulations!");
         if (didP1Win)
             System.out.println("Player 1 won the game!");
         else
-            System.out.println("Player 2 won the game!");
+            System.out.println("Player 2 won the game!");*/
     }
 
 
@@ -117,7 +114,7 @@ public class Battleship {
         }
     }
 
-    protected static boolean isSunken(char rowCo, int columnCo, Battlefield bf) {
+    public static boolean isSunken(char rowCo, int columnCo, Battlefield bf) {
         return !bf.isTouching(rowCo, rowCo, columnCo, columnCo, true);
     }
 }
