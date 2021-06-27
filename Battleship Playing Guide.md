@@ -9,6 +9,9 @@ are as follows :
 * Menu 1 _[ACTION MENU]_
   * `start` - starts the **Human vs. Machine** match
   * `exit` - terminates the program
+  
+Following the ACTION MENU, you will be prompted to type your name. This will be followed by 
+
 * Menu 2 (after `start`) _[ENGINE SELECTION MENU]_
   * [N] Naive-Solver
   * [I] Intermediate-Adversary
@@ -66,7 +69,7 @@ Enter the coordinates of the Submarine (3 cells):
 
 ```
 
-An approriate error message will be displayed if there is something wrong with the input. This occurs when :
+An appropriate error message will be displayed if there is something wrong with the input. This occurs when :
 * The specified coordinates are too small or too large for the ship
 * The coordinates are invalid (eg. letters > J or numbers outside the 1 to 10 range)
 * The ships are touching each other (only touching diagonally is legal).
