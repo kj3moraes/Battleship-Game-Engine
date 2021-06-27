@@ -5,7 +5,7 @@ import Services.Ship;
 
 public abstract class Player {
     String name;
-    Battlefield arena;
+    public Battlefield arena;
 
     public Player() {
         name = "Luke Skywalker";

@@ -45,16 +45,27 @@ public class Battlefield {
         return battlefield[row][col];
     }
 
+    /**
+     * isNavyAfloat() -------------------------------------------------------------------
+     * Finds out if there is any ship / part of a ship still surviving
+     * @return - False if all ships are destroyed. True otherwise
+     */
     public boolean isNavyAfloat() {
         for (char[] row : battlefield) {
             for (char status : row) {
-                if (status == 'O')
+                if (status == SHIP)
                     return true;
             }
         }
         return false;
     }
 
+    /**
+     * printBattlefield(isWartime) ------------------------------------------------------
+     * prints out the 'exposed' battlefield during Setup and the 'cloaked' battlefield
+     * during Wartime. The cloaked battlefield only shows HIT, MISS and WATER.
+     * @param isWartime - describes which battlefield to show.
+     */
     public void printBattlefield(boolean isWartime) {
         System.out.print("\n  ");
         for (int i = 1; i <= 10; i++){
@@ -64,8 +75,8 @@ public class Battlefield {
         for (char ch = 'A'; ch <= 'J'; ch++){
             System.out.print("\n" + ch + " ");
             for (char position : battlefield[row]) {
-                if (isWartime && position == 'O')
-                    System.out.print("~ ");
+                if (isWartime && position == SHIP)
+                    System.out.print(WATER + " ");
                 else System.out.print(position + " ");
             }
             row++;
@@ -73,6 +84,17 @@ public class Battlefield {
         System.out.println("\n");
     }
 
+    /**
+     * isCorrectCoordinates(char, char, int, int, Ship)----------------------------------
+     * This function determines if the inputed coordinates are valid for the particular
+     * ship.
+     * @param roF - row of the first coordinate
+     * @param roS - row of the second coordinate
+     * @param coF - column of the first coordinate
+     * @param coS - column of the second coordinate
+     * @param ship - enum descibing the specifications of the ship.
+     * @return - if the coordinates are valid
+     */
     public boolean isCorrectCoordinates(char roF, char roS, int coF, int coS, Ship ship) {
 
         // CHECK FOR COORDINATES OUTSIDE THE BOARD
@@ -106,11 +128,20 @@ public class Battlefield {
         return true;
     }
 
+    /**
+     * isCrossing(char, char, int, int) -------------------------------------------------
+     * Calculates if the inputed coordinates overlap with a pre-existing ship placement.
+     * @param roF - row of the first coordinate
+     * @param roS - row of the second coordinate
+     * @param coF - column of the first coordinate
+     * @param coS - column of the second coordinate
+     * @return - if the ship crosses another ship
+     */
     public boolean isCrossing(char roF, char roS, int coF, int coS) {
         // CHECK FOR CROSSING OTHER SHIPS OR TOUCHING OTHER SHIPS
         for (int i = roF - 65; i <= roS - 65; i++) {
             for (int j = coF - 1; j <= coS - 1; j++) {
-                if (battlefield[i][j] == 'O') {
+                if (battlefield[i][j] == SHIP) {
                     System.out.println("Error! Your ships cannot cross one another. Try again:");
                     return true;
                 }
@@ -119,6 +150,17 @@ public class Battlefield {
         return false;
     }
 
+    /**
+     * isTouching(char, char, int, int, boolean) ----------------------------------------
+     * Determines if the ship is touching any other ship either vertically or
+     * horizontally during Setup. During Wartime, it find out if the Ship is sunken.
+     * @param roF - row of the first coordinate
+     * @param roS - row of the second coordinate
+     * @param coF - column of the first coordinate
+     * @param coS - column of the second coordinate
+     * @param isWartime -
+     * @return - if the ship is touching any others (during setup)
+     */
     public boolean isTouching(char roF, char roS, int coF, int coS, boolean isWartime) {
         // CHECK FOR TOUCHING OTHER SHIPS OR PIECES OF SHIPS
         boolean touch = false;
@@ -126,24 +168,24 @@ public class Battlefield {
             for (int j = coF - 1; j <= coS - 1; j++) {
                 if (roF == roS) {
                     if (coF - 2 >= 0)
-                        touch = battlefield[roF - 65][coF - 2] == 'O';
+                        touch = battlefield[roF - 65][coF - 2] == SHIP;
                     if (coS <= 9)
-                        touch = battlefield[roF - 65][coS] == 'O' || touch;
+                        touch = battlefield[roF - 65][coS] == SHIP || touch;
 
                     if (roF - 66 >= 0)
-                        touch = battlefield[roF - 66][j] == 'O' || touch;
+                        touch = battlefield[roF - 66][j] == SHIP || touch;
                     if (roS - 64 <= 9)
-                        touch = battlefield[roS - 64][j] == 'O' || touch;
+                        touch = battlefield[roS - 64][j] == SHIP || touch;
                 } else {
                     if (roF - 66 >= 0)
-                        touch = battlefield[roF - 66][coF - 1] == 'O';
+                        touch = battlefield[roF - 66][coF - 1] == SHIP;
                     if (roS - 64 <= 9)
-                        touch = battlefield[roS - 64][coF - 1] == 'O' || touch;
+                        touch = battlefield[roS - 64][coF - 1] == SHIP || touch;
 
                     if (coF - 2 >= 0)
-                        touch = battlefield[i][coF - 2] == 'O' || touch;
+                        touch = battlefield[i][coF - 2] == SHIP || touch;
                     if (coS <= 9)
-                        touch = battlefield[i][coS] == 'O' || touch;
+                        touch = battlefield[i][coS] == SHIP || touch;
                 }
                 if (touch && isWartime) {
                     return true;
@@ -157,6 +199,16 @@ public class Battlefield {
         return false;
     }
 
+    /**
+     * isSunken(char, int) --------------------------------------------------------------
+     * Finds out if the hit at position (rowCo, columnCo) is the final hit that sinks
+     * the ship.
+     * REQUIRES :
+     *      - the (rowCo, columnCo) coordinate must be a HIT
+     * @param rowCo - row coordinate of the hit
+     * @param columnCo - column coordinate of the hit
+     * @return - if the ship is sunken or not
+     */
     protected boolean isSunken(char rowCo, int columnCo) {
         return !isTouching(rowCo, rowCo, columnCo, columnCo, true);
     }
