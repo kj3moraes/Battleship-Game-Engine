@@ -1,6 +1,7 @@
 # Battleship Playing Guide
 This is a PvE style Battleship game that allows the user to choose which Engine they want to go up against
 
+---
 ## How-to-Play
 This guides the reader on how to use the Battleship text-based game engine. The rules of the game are the same as the official 
 version given by [Hasbro](https://www.hasbro.com/common/instruct/Battleship.pdf). For this game, the commands to play 
@@ -14,9 +15,9 @@ The user should type in the appropriate letter - `s` or `x` to perform the respe
 Following the ACTION MENU, you will be prompted to type your name. This will be followed by 
 
 * Menu 2 (after `start`) _[ENGINE SELECTION MENU]_
-  * [N]aive-Solver
-  * [I]ntermediate-Adversary
-  * [B]oogeyman
+  * `[N]aive-Solver` - easy adversary
+  * `[I]ntermediate-Adversary` - challenging but not invincible
+  * `[B]oogeyman` - plays perfectly with no mercy
   
 Type any one of the above letters to access that engine to play with. If any other letter is typed then the 
 appropriate error message is displayed and the menu is shown again. 
@@ -74,6 +75,7 @@ An appropriate error message will be displayed if there is something wrong with 
 * The specified coordinates are too small or too large for the ship
 * The coordinates are invalid (eg. letters > J or numbers outside the 1 to 10 range)
 * The ships are touching each other (only touching diagonally is legal).
+* The ships are crossing (i.e the coordinates of the placement overlap with the position of a pre-existing ship) 
 
 Once Player 1 has completed setup, **double press the Enter key** and pass it one to Player 2 who must repeat the Setup proces.
 

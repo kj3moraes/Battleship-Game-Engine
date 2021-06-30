@@ -43,11 +43,11 @@ public class Human extends Player {
             boolean touch = arena.isTouching(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, false);
             if (cross || touch) continue;
 
-            for (int i = rowOfFirst - 65; i <= rowOfSecond - 65; i++) {
+            /*for (int i = rowOfFirst - 65; i <= rowOfSecond - 65; i++) {
                 for (int j = columnOfFirst - 1; j < columnOfSecond; j++) {
-                    arena.placeResultOfSalvo(i,j,'O');
+                    arena.placePiece(i,j,'O');
                 }
-            }
+            }*/
             break;
         }
     }

@@ -5,10 +5,16 @@ import java.util.Random;
 public abstract class BattleshipEngine extends Player {
     String[] successfulAtk;
 
+    /**
+     * generateRandomMapCoordinates() ---------------------------------------------------
+     * generates any valid coordinates on the Battlefield. This includes any
+     * coordinate with 'A' <= row <= 'J' and 1 <= column <= 10
+     * @return - the random map coordiante as a String
+     */
     protected String generateRandomMapCoordinates() {
-        Random rng = new Random();
-        char row = (char) (rng.nextInt(10) + 'A');
-        int col = rng.nextInt(10);
+        Random rng = new Random((int)(1 * 10000 * Math.random()));
+        char row = (char) (1 + rng.nextInt(10) + 'A');
+        int col = 1 + rng.nextInt(10);
         return row + "" + col;
     }
 

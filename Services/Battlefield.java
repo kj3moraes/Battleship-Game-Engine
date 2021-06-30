@@ -37,8 +37,8 @@ public class Battlefield {
         return battlefield[row][col] == HIT;
     }
 
-    public void placeResultOfSalvo(int row, int col, char result) {
-        battlefield[row][col] = result;
+    public void placePiece(char row, int col, char result) {
+        battlefield[row - 65][col] = result;
     }
 
     public char salvoStatus(int row, int col) {
