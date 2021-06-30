@@ -7,15 +7,16 @@ version given by [Hasbro](https://www.hasbro.com/common/instruct/Battleship.pdf)
 are as follows :
 
 * Menu 1 _[ACTION MENU]_
-  * `start` - starts the **Human vs. Machine** match
-  * `exit` - terminates the program
+  * `[s]tart` - starts the **Human vs. Machine** match
+  * `e[x]it` - terminates the program
   
+The user should type in the appropriate letter - `s` or `x` to perform the respective action.
 Following the ACTION MENU, you will be prompted to type your name. This will be followed by 
 
 * Menu 2 (after `start`) _[ENGINE SELECTION MENU]_
-  * [N] Naive-Solver
-  * [I] Intermediate-Adversary
-  * [B] Boogeyman
+  * [N]aive-Solver
+  * [I]ntermediate-Adversary
+  * [B]oogeyman
   
 Type any one of the above letters to access that engine to play with. If any other letter is typed then the 
 appropriate error message is displayed and the menu is shown again. 
@@ -133,10 +134,3 @@ The documentation for the various parts of the code are found within the markdow
 the comments in the code. A final PDF will be made detailing the algorithm implemented for Boogeyman and some aspects
 of the code
 (TO BE COMPLETED)
-
-
-## References 
-[1] [What is the best strategy to win in the famous board game Battleship?](https://www.quora.com/What-is-the-best-strategy-to-win-in-the-famous-board-game-Battleship)  
-[2] [Crombez, L., Fonseca, G.D., & Gérard, Y. (2021). Efficient Algorithms for Battleship. FUN.](https://arxiv.org/pdf/2004.07354.pdf)  
-[3] [Algorithm for positioning ships in Battleship game](https://stackoverflow.com/questions/10842571/algorithm-for-positioning-ships-in-battleship-game)  
-[4] f

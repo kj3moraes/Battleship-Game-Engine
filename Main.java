@@ -1,46 +1,89 @@
 
 import Engines.BattleshipEngine;
 import Engines.Human;
+import Engines.Intermediate_Adversary;
+import Engines.Naive_Solver;
 import Services.Battlefield;
+import Services.Ship;
+
 import java.util.Scanner;
 import static java.util.stream.IntStream.range;
 
 public class Main {
     public static void main(String[] args) {
         Scanner txt = new Scanner(System.in);
+        final int NO_OF_SHIPS = 5;
+        final Ship[] SHIPS = {Ship.ARC, Ship.BTL, Ship.CRU, Ship.SUB, Ship.DES};
 
         // DEFINING THE PLAYERS
         Human player1;
-        BattleshipEngine player2;
+        BattleshipEngine player2 = null;
 
-        // BEGINNING WITH HUMNA
+        // MENU 1 [ACTION MENU]
+        System.out.println("What would you like to do?\n\t[s]tart\n\te[x]it");
+        char action = txt.next().toLowerCase().charAt(0);
+        switch (action) {
+            case 'x' :
+                System.exit(0);
+                break;
+
+            case 's':
+                break;
+
+            default:
+                main(new String[]{});
+        }
+
+        // BEGINNING WITH HUMAN
         System.out.println("Enter your name : ");
         String humanName = txt.nextLine();
+        player1 = new Human(humanName);
+
+        // MENU 2 [ENGINE SELECTION MENU]
+        char engine;
+        do {
+            System.out.println("What engine would you like to play against?");
+            System.out.println("\t[N]aive-Solver (Easy)\n\t[I]ntermediate-Solver (Medium) \n\t[B]oogeyman (Crazy)");
+            engine = txt.next().toUpperCase().charAt(0);
+            switch (action) {
+                case 'N' :
+                    player2 = new Naive_Solver();
+                    break;
+
+                case 'I':
+                    player2 = new Intermediate_Adversary();
+                    break;
+
+                case 'B' :
+                    break;
+
+            }
+        }while (engine != 'N' || engine != 'I' || engine != 'B');
 
 
         // PLAYER 1 NAVY SETUP
         System.out.println("\nPlayer 1, place your ships on the game field");
-
-        /* for (int i = 0; i < 5; i++) {
-            ships[i].placeShip(p1);
-            p1.printBattlefield(false);
+        for (int i = 0; i < NO_OF_SHIPS; i++) {
+            player1.placeShip(SHIPS[i]);
+            player1.arena.printBattlefield(false);
         }
 
         promptEnterKey();
 
         // PLAYER 2 NAVY SETUP
-        System.out.println("\nPlayer 2, place your ships on the game field");
-        p2.printBattlefield(false);
-        for (int i = 0; i < 5; i++) {
-            ships[i].placeShip(p2);
-            p2.printBattlefield(false);
-        }*/
+        System.out.println("\nKindly wait while the machine places its ships");
+        for (int i = 0; i < NO_OF_SHIPS; i++) {
+            player2.placeShip(SHIPS[i]);
+        }
+
+        // WARTIME
+        System.out.println("The game starts!");
+        boolean didP1Win = false;
 
        /* promptEnterKey();
 
         //WARTIME
-        System.out.println("The game starts!");
-        boolean didP1Win = false;
+
         while(true) {
             // PLAYER 1's turn
             p2.printBattlefield(true);
@@ -89,39 +132,5 @@ public class Main {
         for (int i = 1; i <= 20; i++) {
             System.out.print("-");
         }
-    }
-    
-    protected static void firingASalvo(Battlefield bf) {
-        Scanner num = new Scanner(System.in);
-        while (true) {
-            String firingPos = num.next().toUpperCase().trim();
-
-            char rowCoordinate = firingPos.charAt(0);
-            int columnCoordinate = Integer.parseInt(firingPos.substring(1));
-
-            if (!bf.isCorrectCoordinates(rowCoordinate, 'A', columnCoordinate, 9, null)) {
-                System.out.println("Error! You entered the wrong coordinates! Try again:");
-                continue;
-            }
-
-            char status = bf.salvoStatus(rowCoordinate - 65, columnCoordinate - 1);
-            if (status == bf.SHIP || status == bf.HIT) {
-                bf.placeResultOfSalvo(rowCoordinate - 65, columnCoordinate - 1, bf.HIT);
-                bf.printBattlefield(true);
-                if (isSunken(rowCoordinate, columnCoordinate, bf))
-                    System.out.println("You sank a ship!");
-                else
-                    System.out.println("You hit a ship! ");
-            } else if (status == bf.WATER || status == bf.MISS) {
-                bf.placeResultOfSalvo(rowCoordinate - 65, columnCoordinate - 1, bf.MISS);
-                bf.printBattlefield(true);
-                System.out.println("You missed!");
-            }
-            break;
-        }
-    }
-
-    public static boolean isSunken(char rowCo, int columnCo, Battlefield bf) {
-        return !bf.isTouching(rowCo, rowCo, columnCo, columnCo, true);
     }
 }

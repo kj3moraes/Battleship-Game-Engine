@@ -17,6 +17,10 @@ public abstract class Player {
         arena = new Battlefield();
     }
 
+    public String getName() {
+        return name;
+    }
+
     public abstract void placeShip(Ship s);
 
     public abstract void fireASalvo();
