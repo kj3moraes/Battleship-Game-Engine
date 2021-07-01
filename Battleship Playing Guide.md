@@ -19,7 +19,7 @@ Following the ACTION MENU, you will be prompted to type your name. This will be 
   * `[I]ntermediate-Adversary` - challenging but not invincible
   * `[B]oogeyman` - plays perfectly with no mercy
   
-Type any one of the above letters to access that engine to play with. If any other letter is typed then the 
+Type any one of the above letters (uppercase or lowercase is finem) to access that engine to play with. If any other letter is typed then the 
 appropriate error message is displayed and the menu is shown again. 
 
 ### Game Starts
@@ -30,7 +30,8 @@ Player 2's actions are completely automated (obviously).
 #### Setup
 During setup, Player 1 is prompted first to place his/her ships on the battlefield. When prompted to do so a picture of the current battlefield arrangement will be shown and the user must type the first coordinate on the first line and the second coordinate on the second line.
 * The Row letter must be followed by the Column number with no gaps between them
-* After typing the first coordinates, press Enter and type the second coordinates.
+* Type the first coordinates and **press enter** and then type the second coordinates.
+  (Remember to calculate the position distance. The battlefield is printed to assist with this.)
 * Only horizontal and vertical placements are legal
 
 Remember to examine the length of the ship and the corresponding coordinates. _(You can't fit a Battleship (4 cells) in a space of 3 cells).

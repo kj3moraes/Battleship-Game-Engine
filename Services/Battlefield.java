@@ -33,16 +33,16 @@ public class Battlefield {
         }
     }
 
-    public boolean isHit(int row, int col) {
-        return battlefield[row][col] == HIT;
+    public boolean isHit(char row, int col) {
+        return salvoStatus(row, col) == HIT;
     }
 
     public void placePiece(char row, int col, char result) {
-        battlefield[row - 65][col] = result;
+        battlefield[row - 65][col - 1] = result;
     }
 
-    public char salvoStatus(int row, int col) {
-        return battlefield[row][col];
+    public char salvoStatus(char row, int col) {
+        return battlefield[row - 65][col - 1];
     }
 
     /**
@@ -86,13 +86,12 @@ public class Battlefield {
 
     /**
      * isCorrectCoordinates(char, char, int, int, Ship)----------------------------------
-     * This function determines if the inputed coordinates are valid for the particular
-     * ship.
+     * This function determines if the inputed coordinates are the
      * @param roF - row of the first coordinate
      * @param roS - row of the second coordinate
      * @param coF - column of the first coordinate
      * @param coS - column of the second coordinate
-     * @param ship - enum descibing the specifications of the ship.
+     * @param ship - enum describing the specifications of the ship.
      * @return - if the coordinates are valid
      */
     public boolean isCorrectCoordinates(char roF, char roS, int coF, int coS, Ship ship) {
@@ -209,7 +208,32 @@ public class Battlefield {
      * @param columnCo - column coordinate of the hit
      * @return - if the ship is sunken or not
      */
-    protected boolean isSunken(char rowCo, int columnCo) {
+    public boolean isSunken(char rowCo, int columnCo) {
         return !isTouching(rowCo, rowCo, columnCo, columnCo, true);
     }
+
+/*    *//**
+     * isValidPlacement(char, char, int, int, Ship)----------------------------------
+     * This function determines if the given coordinates for a ship's placement are
+     * valid. This means that
+     *      * Coordinates fit in the battlefield
+     *      * Does not overlap with any pre-existing ship
+     *      * Does not touch (either horizontally or vertically) any other ship
+     * @param roF - row of the first coordinate
+     * @param roS - row of the second coordinate
+     * @param coF - column of the first coordinate
+     * @param coS - column of the second coordinate
+     * @param ship - enum describing the specifications of the ship.
+     * @return - if the placement is valid
+     *//*
+    public boolean isValidPlacements(char roF, char roS, int coF, int coS, Ship ship) {
+        if (isCorrectCoordinates(roF, roS, coF, coS, ship)) {
+            if (!isCrossing(roF, roS, coF, coS)) {
+                if (!isTouching(roF, roS, coF, coS, false)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }*/
 }

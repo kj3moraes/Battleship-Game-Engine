@@ -34,8 +34,8 @@ public class Human extends Player {
             columnOfFirst = Math.min(columnOfFirst, columnOfSecond);
             columnOfSecond = temp;
 
-            temp = rowOfFirst > rowOfSecond ? rowOfFirst : rowOfSecond;
-            rowOfFirst = rowOfFirst < rowOfSecond ? rowOfFirst : rowOfSecond;
+            temp = Math.max(rowOfFirst, rowOfSecond);
+            rowOfFirst = (char) Math.min(rowOfFirst, rowOfSecond);
             rowOfSecond = (char) temp;
 
             // CHECK FOR CROSSING OR TOUCHING OTHER SHIPS
@@ -45,7 +45,7 @@ public class Human extends Player {
 
             /*for (int i = rowOfFirst - 65; i <= rowOfSecond - 65; i++) {
                 for (int j = columnOfFirst - 1; j < columnOfSecond; j++) {
-                    arena.placePiece(i,j,'O');
+                    arena.placePiece   (i,j,'O');
                 }
             }*/
             break;

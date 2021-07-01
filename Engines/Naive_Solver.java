@@ -17,15 +17,16 @@ public class Naive_Solver extends BattleshipEngine {
 
         // CAN IT FIT HORIZONTALLY ? n
         if (colStart - s.getShipLength() + 1 > 0) {
-            if (arena.isCorrectCoordinates(rowStart, rowStart, colStart, colStart - s.getShipLength() + 1, s) {
-                for (int i = colStart - s.getShipLength() + 1; i++) {
-
+            if (arena.isCorrectCoordinates(rowStart, rowStart, colStart, colStart - s.getShipLength() + 1, s)) {
+                for (int i = colStart - s.getShipLength() + 1; i <= colStart; i++) {
+                    arena.placePiece(rowStart, i, arena.SHIP);
                 }
             }
-        } else if (colStart + s.getShipLength() < 10) {
-            if (arena.isCorrectCoordinates(rowStart, rowStart, colStart, colStart - s.getShipLength() + 1, s) {
-
-
+        } else if (colStart + s.getShipLength() - 1 <= 10) {
+            if (arena.isCorrectCoordinates(rowStart, rowStart, colStart, colStart - s.getShipLength() + 1, s)) {
+                for (int i = colStart; i < colStart + s.getShipLength() - 1; i++) {
+                    
+                }
             }
         }
 
@@ -42,7 +43,7 @@ public class Naive_Solver extends BattleshipEngine {
     public void fireASalvo() {
         String fireCoordiantes = generateRandomMapCoordinates();
         char salvoRow = fireCoordiantes.charAt(0);
-        int salvoColumn = Integer.parseInt(fireCoordiantes.charAt()
+        //int salvoColumn = Integer.parseInt(fireCoordiantes.charAt()
     }
 
     public static void main(String[] args) {
