@@ -3,9 +3,9 @@ This is a PvE style Battleship game that allows the user to choose which Engine 
 
 ---
 ## How-to-Play
-This guides the reader on how to use the Battleship text-based game engine. The rules of the game are the same as the official 
-version given by [Hasbro](https://www.hasbro.com/common/instruct/Battleship.pdf). For this game, the commands to play 
-are as follows :
+This guide instructs the reader on how to use the Battleship text-based game engine. The rules of the game are the same as the official 
+version given by [Hasbro](https://www.hasbro.com/common/instruct/Battleship.pdf). At the start of the program, you will need to 
+give some details for the game to take place.
 
 * Menu 1 _[ACTION MENU]_
   * `[s]tart` - starts the **Human vs. Machine** match
@@ -28,7 +28,8 @@ wants they are free to modify the source code in the `Battleship.java` file to s
 Player 2's actions are completely automated (obviously). 
 
 #### Setup
-During setup, Player 1 is prompted first to place his/her ships on the battlefield. When prompted to do so a picture of the current battlefield arrangement will be shown and the user must type the first coordinate on the first line and the second coordinate on the second line.
+During setup, Player 1 is prompted first to place his/her ships on the battlefield. When prompted to do so a picture of the current 
+battlefield arrangement will be shown and the user must type the first coordinate on the first line and the second coordinate on the second line.
 * The Row letter must be followed by the Column number with no gaps between them
 * Type the first coordinates and **press enter** and then type the second coordinates.
   (Remember to calculate the position distance. The battlefield is printed to assist with this.)
@@ -78,12 +79,18 @@ An appropriate error message will be displayed if there is something wrong with 
 * The ships are touching each other (only touching diagonally is legal).
 * The ships are crossing (i.e the coordinates of the placement overlap with the position of a pre-existing ship) 
 
-Once Player 1 has completed setup, **double press the Enter key** and pass it one to Player 2 who must repeat the Setup proces.
+Once Player 1 has completed setup, **double press the Enter key** and Player 2 (Engine) will automatically place its
+ships. A message will be displayed indicating that Player 2 has completed the Setup and that War is about to begin
 
 #### Wartime
-For Wartime, Player 1 wil go first. Player 1 will be shown Player 2's "Fog of War" screen at the top and they have to guess where they want to fire. Under P2 FOW is a divider and P1's own ship layout. P1 will guess where to fire and if they hit a ship they will see that part marked with the HIT character whether that be X or (any character that is designated by the programmer).
+For Wartime, Player 1 wil go first. Player 1 will be shown Player 2's "Fog of War" (FOW) screen at the top and 
+they have to guess where they want to fire. Under P2 FOW is a divider and P1's own ship layout. 
+P1 will guess where to fire and if they hit a ship they will see that part marked with the HIT character whether 
+that be X or (any character that is designated by the programmer). 
 
-This is then followed by an enter prompt which generated as large amount of space and then Player 2 will play. **Now the obvious problem here is that if P2, scrolls enough then they will see P1s guess and ships, so one must trust the other to play fairly**. The following example denotes a possible scenario:
+This is then followed by an enter prompt which generated as large amount of space and then Player 2 will play. 
+The following example denotes a possible scenario:
+
 
 ```
   1 2 3 4 5 6 7 8 9 10 
@@ -129,11 +136,8 @@ J ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 You hit a ship! 
 Press Enter and pass the move to another player
 ```
-
-The game goes on until one players sinks all the ships of the other player. The appropriate celebratory message with the winning player is displayed and then the game stops.
+Keep in mind that there will be a message displayed at the end of P2's play to indicate whehter the engine hit a ship or
+missed. This will be clearly displayed for P1 to view as well. The game goes on until one players sinks all the ships
+of the other player. The appropriate celebratory message with the winning player is displayed and then the game stops.
 
 ---
-The documentation for the various parts of the code are found within the markdown files in the respective folders and 
-the comments in the code. A final PDF will be made detailing the algorithm implemented for Boogeyman and some aspects
-of the code
-(TO BE COMPLETED)
