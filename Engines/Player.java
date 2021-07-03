@@ -21,7 +21,16 @@ public abstract class Player {
         return name;
     }
 
+    /**
+     * placeShip(Ship) ------------------------------------------------------------------
+     * Allows placememnt of the Ship s on the Battlefield.
+     * @param s - enum describing the specifications of the ship.
+     */
     public abstract void placeShip(Ship s);
 
+    /**
+     * fireASalvo() ---------------------------------------------------------------------
+     * Allows for the Player to fire a shot at the enemies Battlefield.
+     */
     public abstract void fireASalvo();
 }

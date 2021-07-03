@@ -120,10 +120,8 @@ public class Battlefield {
     /**
      * isCorrectCoordinates(char, char, int, int, Ship)----------------------------------
      * This function determines if the inputed coordinates for the Ship s is a valid
-     * placement of the ship. This occurs iff :
-     *      * The coordinates fit in the arena
-     *      * Ship s does not cross (overlap) any other pre-existing ship
-     *      * Ship s does not touch any other ship (either horizontally or vertically)
+     * placement of the ship. (Refer to Battleship Playing Guide for valid placmement
+     * criteria)
      *
      * REQUIRES : The coordinates must be normalized.
      * @param roF - row of the first coordinate

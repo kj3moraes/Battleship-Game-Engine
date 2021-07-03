@@ -9,6 +9,7 @@ public class Naive_Solver extends BattleshipEngine {
         char rowStart = startingPosition.charAt(0);
         int colStart = startingPosition.charAt(0);
 
+        // DECIDE TO GO EITHER HORIZONTAL OR VERTICAL
         int horizontalOrVertical = (int) Math.round(Math.random());
 
         // HORIZONTAL OR VERTICAL PLACEMENT VIABILITY
@@ -60,12 +61,5 @@ public class Naive_Solver extends BattleshipEngine {
 
 
 
-    }
-
-    public static void main(String[] args) {
-        Naive_Solver test = new Naive_Solver();
-        for (int i = 0; i < 100; i++) {
-            System.out.println(test.generateRandomMapCoordinates());
-        }
     }
 }//end of class
