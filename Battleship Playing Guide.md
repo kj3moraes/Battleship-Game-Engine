@@ -134,5 +134,12 @@ The game goes on until one players sinks all the ships of the other player. The 
 ---
 The documentation for the various parts of the code are found within the markdown files in the respective folders and 
 the comments in the code. A final PDF will be made detailing the algorithm implemented for Boogeyman and some aspects
-of the code
-(TO BE COMPLETED)
+of the code.
+
+
+## References 
+[1] [What is the best strategy to win in the famous board game Battleship?](https://www.quora.com/What-is-the-best-strategy-to-win-in-the-famous-board-game-Battleship)  
+[2] Crombez, L., da Fonseca, G., & Gerard, Y. (2012). Efficient Algorithms for Battleship. _ACM_. Published. https://arxiv.org/pdf/2004.07354.pdf  
+[3] [Algorithm for positioning ships in Battleship game](https://stackoverflow.com/questions/10842571/algorithm-for-positioning-ships-in-battleship-game)  
+[4] [Battleship Playing Strategies](https://datagenetics.com/blog/december32011/index.html)  
+[5] Audinot, M., Bonnet, F., & Viennot, S. (2014). Optimal Strategies against a Random Opponent in Battleship. The 19th Game Programming Workshop 2014. Published. [https://ipsj.ixsq.nii.ac.jp/ej/](https://ipsj.ixsq.nii.ac.jp/ej/?action=repository_action_common_download&item_id=106500&item_no=1&attribute_id=1&file_no=1)
