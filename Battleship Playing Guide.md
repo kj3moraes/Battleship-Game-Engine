@@ -1,5 +1,6 @@
 # Battleship Playing Guide
-This is a PvE style Battleship game that allows the user to choose which Engine they want to go up against
+This is a PvE style Battleship game that allows the user to choose which Engine they want to go up against. The interface
+is text-based, so you will need an IDE or code editor to run this in. 
 
 ---
 ## How-to-Play
@@ -16,7 +17,7 @@ Following the ACTION MENU, you will be prompted to type your name. This will be 
 
 * Menu 2 (after `start`) _[ENGINE SELECTION MENU]_
   * `[N]aive-Solver` - easy adversary
-  * `[I]ntermediate-Adversary` - challenging but not invincible
+  * `[I]ntermediate-Adversary` - challenging but not invincible. (equivalent to another human)
   * `[B]oogeyman` - plays perfectly with no mercy
   
 Type any one of the above letters (uppercase or lowercase is finem) to access that engine to play with. If any other letter is typed then the 
@@ -88,7 +89,7 @@ they have to guess where they want to fire. Under P2 FOW is a divider and P1's o
 P1 will guess where to fire and if they hit a ship they will see that part marked with the HIT character whether 
 that be X or (any character that is designated by the programmer). 
 
-This is then followed by an enter prompt which generated as large amount of space and then Player 2 will play. 
+This is then followed by an Enter prompt which generated as large amount of space and then Player 2 will play. 
 The following example denotes a possible scenario:
 
 

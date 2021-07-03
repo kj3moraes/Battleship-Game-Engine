@@ -1,9 +1,6 @@
 package Engines;
 
 import Services.Ship;
-
-import java.util.Scanner;
-
 public class Naive_Solver extends BattleshipEngine {
 
     @Override
@@ -15,7 +12,7 @@ public class Naive_Solver extends BattleshipEngine {
         System.out.println("Starting Position: \t " + startingPosition);
         System.out.println("Ship : " + s.getShipName() + " \t " + s.getShipLength());
 
-        // CAN IT FIT HORIZONTALLY ? n
+        // CAN IT FIT HORIZONTALLY ?
         if (colStart - s.getShipLength() + 1 > 0) {
             if (arena.isCorrectCoordinates(rowStart, rowStart, colStart, colStart - s.getShipLength() + 1, s)) {
                 for (int i = colStart - s.getShipLength() + 1; i <= colStart; i++) {
@@ -24,26 +21,37 @@ public class Naive_Solver extends BattleshipEngine {
             }
         } else if (colStart + s.getShipLength() - 1 <= 10) {
             if (arena.isCorrectCoordinates(rowStart, rowStart, colStart, colStart - s.getShipLength() + 1, s)) {
-                for (int i = colStart; i < colStart + s.getShipLength() - 1; i++) {
-                    
+                for (int i = colStart; i <= colStart + s.getShipLength() - 1; i++) {
+                    arena.placePiece(rowStart, i, arena.SHIP);
                 }
             }
         }
 
         // CAN IT FIT VERTICALLY ?
         if (rowStart - s.getShipLength() > 'A') {
-
+            if (arena.isCorrectCoordinates(rowStart, rowStart, colStart, colStart - s.getShipLength() + 1, s)) {
+                for (int i = colStart - s.getShipLength() + 1; i <= colStart; i++) {
+                    arena.placePiece(rowStart, i, arena.SHIP);
+                }
+            }
         } else if (rowStart + s.getShipLength() < 'J') {
+            if (arena.isCorrectCoordinates(rowStart, rowStart, colStart, colStart - s.getShipLength() + 1, s)) {
+                for (int i = colStart - s.getShipLength() + 1; i <= colStart; i++) {
+                    arena.placePiece(rowStart, i, arena.SHIP);
+                }
+            }
 
         }
-
     }
 
     @Override
     public void fireASalvo() {
-        String fireCoordiantes = generateRandomMapCoordinates();
-        char salvoRow = fireCoordiantes.charAt(0);
-        //int salvoColumn = Integer.parseInt(fireCoordiantes.charAt()
+        String fireCoordinates = generateRandomMapCoordinates();
+        char salvoRow = fireCoordinates.charAt(0);
+        int salvoColumn = Integer.parseInt(fireCoordinates.substring(1));
+
+
+
     }
 
     public static void main(String[] args) {

@@ -2,10 +2,28 @@ package Services;
 import java.util.Arrays;
 public class Battlefield {
     private char[][] battlefield;
+
+    // BASE PIECE
+    public final char WATER;
+
+    // ADDED PIECE(s)
     public final char HIT;
     public final char MISS;
     public final char SHIP;
-    public final char WATER;
+
+    /** DEFINITIONS ---------------------------------------------------------------------
+     *  > NORMALIZED
+     *      This means that given a set of coordinates for a ship placement
+     *      (roF, roS, coF, coS) then roF < roS and coF < coS.
+     *
+     *  > TOUCHING
+     *      Another ship's placement cannot be either to the immediate left or the
+     *      right of any pre-existing ship.
+     *
+     *  > COORDINATES
+     *      The row parameters must be between 'A' and 'J" inclusive.
+     *      The column parameters must be between 1 and 10 inclusive.
+     */
 
     public Battlefield() {
         battlefield  = new char[10][10];
@@ -37,10 +55,25 @@ public class Battlefield {
         return salvoStatus(row, col) == HIT;
     }
 
+    /**
+     * placePiece(char, int, result) ------------------------------------------------------------
+     * Fills the specified coordinate with one of the ADDED PIECE(s).
+     * @param row - the row coordinate
+     * @param col - the column coordinate
+     * @param result - the ADDED PIECE to be placed
+     */
     public void placePiece(char row, int col, char result) {
         battlefield[row - 65][col - 1] = result;
     }
 
+    /**
+     * salvoStatus(char, int) -----------------------------------------------------------
+     * Provides the status of the coordinate in the battlefield specified by the row
+     * and column coordinate
+     * @param row - row coordinate
+     * @param col - column coordiante
+     * @return - one of BASE PIECE or ADDED PIECE(s)
+     */
     public char salvoStatus(char row, int col) {
         return battlefield[row - 65][col - 1];
     }
@@ -86,15 +119,21 @@ public class Battlefield {
 
     /**
      * isCorrectCoordinates(char, char, int, int, Ship)----------------------------------
-     * This function determines if the inputed coordinates are the
+     * This function determines if the inputed coordinates for the Ship s is a valid
+     * placement of the ship. This occurs iff :
+     *      * The coordinates fit in the arena
+     *      * Ship s does not cross (overlap) any other pre-existing ship
+     *      * Ship s does not touch any other ship (either horizontally or vertically)
+     *
+     * REQUIRES : The coordinates must be normalized.
      * @param roF - row of the first coordinate
      * @param roS - row of the second coordinate
      * @param coF - column of the first coordinate
      * @param coS - column of the second coordinate
-     * @param ship - enum describing the specifications of the ship.
+     * @param s - enum describing the specifications of the ship.
      * @return - if the coordinates are valid
      */
-    public boolean isCorrectCoordinates(char roF, char roS, int coF, int coS, Ship ship) {
+    public boolean isCorrectCoordinates(char roF, char roS, int coF, int coS, Ship s) {
 
         // CHECK FOR COORDINATES OUTSIDE THE BOARD
         if (roF > 'J' || roF < 'A' || roS > 'J' || roS < 'A') {
@@ -107,29 +146,38 @@ public class Battlefield {
             return false;
         }
 
-        if (ship != null) {
+        // ENSURE THAT WE ARE USING A VALID SHIP
+        if (s != null) {
             // CHECK FOR COORDINATES NOT CORRESPONDING TO STRAIGHT LINES
             if (roF != roS && coF != coS) {
                 System.out.println("Error! Wrong ship location! Try again:");
                 return false;
             } else if (roF == roS) {
-                if (Math.abs(coF - coS) + 1 != ship.getShipLength()) {
-                    System.out.println("Error! Wrong length of the " + ship.getShipName() + "! Try again:");
+                if (Math.abs(coF - coS) + 1 != s.getShipLength()) {
+                    System.out.println("Error! Wrong length of the " + s.getShipName() + "! Try again:");
                     return false;
                 }
             } else {
-                if (Math.abs(roF - roS) + 1 != ship.getShipLength()) {
-                    System.out.println("Error! Wrong length of the " + ship.getShipName() + "! Try again:");
+                if (Math.abs(roF - roS) + 1 != s.getShipLength()) {
+                    System.out.println("Error! Wrong length of the " + s.getShipName() + "! Try again:");
                     return false;
                 }
             }
         }
+
+        // CHECK IF THE SHIP IS CROSSING OUR TOUCHING ANY OTHER PRE-EXISTING SHIP
+        if (isCrossing(roF, roS, coF, coS) || isTouching(roF, roS, coF, coS, false)) {
+            return false;
+        }
+
         return true;
     }
 
     /**
      * isCrossing(char, char, int, int) -------------------------------------------------
      * Calculates if the inputed coordinates overlap with a pre-existing ship placement.
+     *
+     * REQUIRES : The coordinates must be normalized.
      * @param roF - row of the first coordinate
      * @param roS - row of the second coordinate
      * @param coF - column of the first coordinate
@@ -153,6 +201,8 @@ public class Battlefield {
      * isTouching(char, char, int, int, boolean) ----------------------------------------
      * Determines if the ship is touching any other ship either vertically or
      * horizontally during Setup. During Wartime, it find out if the Ship is sunken.
+     *
+     * REQUIRES : The coordinates must be normalized.
      * @param roF - row of the first coordinate
      * @param roS - row of the second coordinate
      * @param coF - column of the first coordinate
@@ -212,28 +262,4 @@ public class Battlefield {
         return !isTouching(rowCo, rowCo, columnCo, columnCo, true);
     }
 
-/*    *//**
-     * isValidPlacement(char, char, int, int, Ship)----------------------------------
-     * This function determines if the given coordinates for a ship's placement are
-     * valid. This means that
-     *      * Coordinates fit in the battlefield
-     *      * Does not overlap with any pre-existing ship
-     *      * Does not touch (either horizontally or vertically) any other ship
-     * @param roF - row of the first coordinate
-     * @param roS - row of the second coordinate
-     * @param coF - column of the first coordinate
-     * @param coS - column of the second coordinate
-     * @param ship - enum describing the specifications of the ship.
-     * @return - if the placement is valid
-     *//*
-    public boolean isValidPlacements(char roF, char roS, int coF, int coS, Ship ship) {
-        if (isCorrectCoordinates(roF, roS, coF, coS, ship)) {
-            if (!isCrossing(roF, roS, coF, coS)) {
-                if (!isTouching(roF, roS, coF, coS, false)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }*/
 }

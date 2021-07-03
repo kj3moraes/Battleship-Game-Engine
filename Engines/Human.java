@@ -26,9 +26,6 @@ public class Human extends Player {
             int columnOfFirst = Integer.parseInt(firstCoordinate.substring(1));
             int columnOfSecond = Integer.parseInt(secondCoordinate.substring(1));
 
-            if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, s))
-                continue;
-
             // NORMALIZE THE ROW AND COLUMN COORDINATES
             int temp = Math.max(columnOfFirst, columnOfSecond);
             columnOfFirst = Math.min(columnOfFirst, columnOfSecond);
@@ -38,10 +35,8 @@ public class Human extends Player {
             rowOfFirst = (char) Math.min(rowOfFirst, rowOfSecond);
             rowOfSecond = (char) temp;
 
-            // CHECK FOR CROSSING OR TOUCHING OTHER SHIPS
-            boolean cross = arena.isCrossing(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond);
-            boolean touch = arena.isTouching(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, false);
-            if (cross || touch) continue;
+            if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, s))
+                continue;
 
             /*for (int i = rowOfFirst - 65; i <= rowOfSecond - 65; i++) {
                 for (int j = columnOfFirst - 1; j < columnOfSecond; j++) {
@@ -54,7 +49,7 @@ public class Human extends Player {
 
     @Override
     public void fireASalvo() {
-
+        Scanner num = new Scanner(System.in);
     }
 
     /*
