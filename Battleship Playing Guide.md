@@ -20,15 +20,14 @@ Following the ACTION MENU, you will be prompted to type your name. This will be 
   * `[I]ntermediate-Adversary` - challenging but not invincible. (equivalent to another human)
   * `[B]oogeyman` - plays perfectly with no mercy
   
-Type any one of the above letters (uppercase or lowercase is finem) to access that engine to play with. If any other letter is typed then the 
-appropriate error message is displayed and the menu is shown again. 
+Type any one of the above letters (uppercase or lowercase is finem) to access that engine to play with. If any other letter is typed then the appropriate error message is displayed and the menu is shown again. 
 
-### Game Starts
+### BATTLESHIP GAME
 Once again this consists of two parts - Setup and Wartime. The Human will always go as Player 1. However, if the user
 wants they are free to modify the source code in the `Battleship.java` file to switch up the Players or add a menu.
 Player 2's actions are completely automated (obviously). 
 
-#### Setup
+### SETUP
 During setup, Player 1 is prompted first to place his/her ships on the battlefield. When prompted to do so a picture of the current 
 battlefield arrangement will be shown and the user must type the first coordinate on the first line and the second coordinate on the second line.
 * The Row letter must be followed by the Column number with no gaps between them
@@ -74,8 +73,9 @@ Enter the coordinates of the Submarine (3 cells):
 
 ```
 
-An appropriate error message will be displayed if there is something wrong with the input. This occurs when :
-* The specified coordinates are too small or too large for the shi
+#### VALID PLACEMENT
+An valid placement of a ship is when it does not break any of the following conditions. An appropriate error message will be displayed if there is something wrong with the input. :
+* The specified coordinates are too small or too large for the ship
 * The specified coordinates do not fit on a line (either horizontally or vertically) 
 * The coordinates are invalid (eg. letters > J or numbers outside the 1 to 10 range)
 * The ships are touching each other (only touching diagonally is legal).
@@ -84,7 +84,7 @@ An appropriate error message will be displayed if there is something wrong with 
 Once Player 1 has completed setup, **double press the Enter key** and Player 2 (Engine) will automatically place its
 ships. A message will be displayed indicating that Player 2 has completed the Setup and that War is about to begin
 
-#### Wartime
+### WARTIME
 For Wartime, Player 1 wil go first. Player 1 will be shown Player 2's "Fog of War" (FOW) screen at the top and 
 they have to guess where they want to fire. Under P2's FOW is a divider and P1's own ship layout.    
 **What is "Fog of War" ? It is state where only the HIT / MISS positions on a Battlefield can be displayed**   
