@@ -80,13 +80,15 @@ public class Main {
         System.out.println("The game starts!");
         boolean didP1Win = false;
 
-       /* promptEnterKey();
+        promptEnterKey();
+
+       /*
 
         //WARTIME
 
         while(true) {
             // PLAYER 1's turn
-            p2.printBattlefield(true);
+            p2.printBattlefield  (true);
             printDivider();
             p1.printBattlefield(false);
             System.out.println("Player 1, it's your turn:");
