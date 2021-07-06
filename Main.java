@@ -82,41 +82,11 @@ public class Main {
 
         promptEnterKey();
 
-       /*
-
-        //WARTIME
-
-        while(true) {
-            // PLAYER 1's turn
-            p2.printBattlefield  (true);
-            printDivider();
-            p1.printBattlefield(false);
-            System.out.println("Player 1, it's your turn:");
-            firingASalvo(p2);
-
-            if (!p2.isNavyAfloat()) {
-                didP1Win = true;
-                break;
-            }
-
-            // PLAYER 2's TURN
-            promptEnterKey();
-            p1.printBattlefield(true);
-            printDivider();
-            p2.printBattlefield(false);
-            System.out.println("Player 2, it's your turn:");
-            firingASalvo(p1);
-
-            if (!p1.isNavyAfloat())
-                break;
-            else
-                promptEnterKey();
-        }*/
-/*        System.out.println("You sank the last ship. You won. Congratulations!");
+        System.out.println("You sank the last ship. You won. Congratulations!");
         if (didP1Win)
             System.out.println("Player 1 won the game!");
         else
-            System.out.println("Player 2 won the game!");*/
+            System.out.println("Player 2 won the game!");
     }
 
 

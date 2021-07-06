@@ -38,18 +38,22 @@ public class Human extends Player {
             if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, s))
                 continue;
 
-            /*for (int i = rowOfFirst - 65; i <= rowOfSecond - 65; i++) {
-                for (int j = columnOfFirst - 1; j < columnOfSecond; j++) {
-                    arena.placePiece   (i,j,'O');
+            for (char i = rowOfFirst; i <= rowOfSecond; i++) {
+                for (int j = columnOfFirst; j <= columnOfSecond; j++) {
+                    arena.placePiece(rowOfFirst, columnOfFirst, arena.SHIP);
                 }
-            }*/
+            }
             break;
         }
     }
 
     @Override
-    public void fireASalvo() {
+    public String fireASalvo() {
         Scanner num = new Scanner(System.in);
+        System.out.println("Enter coords ");
+        String firingPos = num.next().toUpperCase().trim();
+
+        return firingPos;
     }
 
     /*

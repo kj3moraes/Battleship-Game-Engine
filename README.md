@@ -16,3 +16,17 @@ of the code.
 To play this game you will need to download the source code to any folder you like. Open an IDE or a code editor that
 can compile and run Java code and run `Main.java`. This will bring up the console and prompt you with the _ACTION MENU_. 
 From then on, follow the Battleship Playing Guide.
+
+**Class Descriptions**
+* `Main.java` - houses all the interacting piece. Is the executable file to play the game
+* `Ship.java` - enum containing the specifications of the Ships used.
+* `Battlefield.java`- class that provides template for the Battlefield object - the playable arena
+* `Player.java` - abstract class outlining how a player should play
+    * `Human.java` - a human player 
+    * `BattleshipEngine.java` - a machine player 
+        * `Naive_Solver.java` - the easy engine
+        * `Intermediate_Adversary,java` - the medium engine   
+        * `Boogeyman.java` - the hard engine
+        
+
+
