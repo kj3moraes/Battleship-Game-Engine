@@ -7,7 +7,7 @@ import static java.util.stream.IntStream.range;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner txt = new Scanner(System.in);
+        Scanner txt = new Scanner(System.in), setup = new Scanner(System.in);
         final int NO_OF_SHIPS = 5;
         final Ship[] SHIPS = {Ship.ARC, Ship.BTL, Ship.CRU, Ship.SUB, Ship.DES};
 
@@ -32,7 +32,7 @@ public class Main {
 
         // BEGINNING WITH HUMAN
         System.out.println("Enter your name : ");
-        String humanName = txt.nextLine();
+        String humanName = setup.nextLine();
         player1 = new Human(humanName);
 
         // MENU 2 [ENGINE SELECTION MENU]
@@ -41,20 +41,21 @@ public class Main {
             System.out.println("What engine would you like to play against?");
             System.out.println("\t[N]aive-Solver (Easy)\n\t[I]ntermediate-Solver (Medium) \n\t[B]oogeyman (Crazy)");
             engine = txt.next().toUpperCase().trim().charAt(0);
-            switch (action) {
+            System.out.println(engine == 'N');
+            switch (engine) {
                 case 'N' :
-                    player2 = new Naive_Solver();
+                    player2 = new NaiveSolver();
                     break;
 
                 case 'I':
-                    player2 = new Intermediate_Adversary();
+                    player2 = new IntermediateAdversary();
                     break;
 
                 case 'B' :
                     break;
 
                 default:
-                    System.out.println("Type in one of the letters : N,I,B");
+                    System.out.println("Type in one of the letters : N,I or B");
                     continue;
             }
             break;
@@ -62,7 +63,8 @@ public class Main {
 
 
         // PLAYER 1 NAVY SETUP
-        System.out.println("\nPlayer 1, place your ships on the game field");
+        System.out.println("\nPlayer 1, place your ships on the game field\n");
+        player1.arena.printBattlefield(false);
         for (int i = 0; i < NO_OF_SHIPS; i++) {
             player1.placeShip(SHIPS[i]);
             player1.arena.printBattlefield(false);
@@ -142,6 +144,10 @@ public class Main {
             System.out.printf("Congrats %s, you have won this game of Battleship!", humanName);
         else
             System.out.println("The Engine won this game of Battleship!");
+    }
+
+    private static void trapdoorCheck(String input) {
+
     }
 
     private static void determineShotResult(Battlefield enemy, String firingCoord, boolean isEngine) {

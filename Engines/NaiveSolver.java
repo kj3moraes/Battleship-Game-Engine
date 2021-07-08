@@ -1,7 +1,7 @@
 package Engines;
 
 import Services.Ship;
-public class Naive_Solver extends BattleshipEngine {
+public class NaiveSolver extends BattleshipEngine {
 
     @Override
     public void placeShip(Ship s) {
