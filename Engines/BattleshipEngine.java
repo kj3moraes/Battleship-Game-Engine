@@ -4,6 +4,7 @@ import java.util.Random;
 
 public abstract class BattleshipEngine extends Player {
     String[] successfulAtk;
+    Random rng;
 
     /**
      * generateRandomMapCoordinates() ---------------------------------------------------
@@ -12,7 +13,7 @@ public abstract class BattleshipEngine extends Player {
      * @return - the random map coordiante as a String
      */
     protected String generateRandomMapCoordinates() {
-        Random rng = new Random((int)(1 * 10000 * Math.random()));
+        rng = new Random((int)(1 * 10000 * Math.random()));
         char row = (char) (1 + rng.nextInt(10) + 'A');
         int col = 1 + rng.nextInt(10);
         return row + "" + col;

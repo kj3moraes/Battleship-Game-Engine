@@ -1,7 +1,7 @@
 package Services;
 import java.util.Arrays;
 public class Battlefield {
-    private char[][] battlefield;
+    private final char[][] battlefield;
 
     // BASE PIECE
     public final char WATER;
@@ -51,8 +51,26 @@ public class Battlefield {
         }
     }
 
+    /**
+     * isHit(char, int) -----------------------------------------------------------------
+     * Determines if the specified row and column hits a ship or a previously hit target
+     * @param row - row coordinate
+     * @param col - column coordinate
+     * @return - whether or not the row and column specify SHIP or HIT
+     */
     public boolean isHit(char row, int col) {
-        return salvoStatus(row, col) == HIT;
+        return salvoStatus(row, col) == SHIP || salvoStatus(row, col) == HIT;
+    }
+
+    /**
+     * isMiss(char, int) -----------------------------------------------------------------
+     * Determines if the specified row and column misses a ship
+     * @param row - row coordinate
+     * @param col - column coordinate
+     * @return - whether or not the row and column specify MISS
+     */
+    public boolean isMiss(char row, int col) {
+        return salvoStatus(row, col) == WATER;
     }
 
     /**
@@ -161,13 +179,11 @@ public class Battlefield {
                     return false;
                 }
             }
+            // CHECK IF THE SHIP IS CROSSING OUR TOUCHING ANY OTHER PRE-EXISTING SHIP
+            if (isCrossing(roF, roS, coF, coS) || isTouching(roF, roS, coF, coS, false)) {
+                return false;
+            }
         }
-
-        // CHECK IF THE SHIP IS CROSSING OUR TOUCHING ANY OTHER PRE-EXISTING SHIP
-        if (isCrossing(roF, roS, coF, coS) || isTouching(roF, roS, coF, coS, false)) {
-            return false;
-        }
-
         return true;
     }
 
@@ -259,5 +275,4 @@ public class Battlefield {
     public boolean isSunken(char rowCo, int columnCo) {
         return !isTouching(rowCo, rowCo, columnCo, columnCo, true);
     }
-
 }

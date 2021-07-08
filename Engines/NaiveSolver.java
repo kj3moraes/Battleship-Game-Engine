@@ -1,7 +1,7 @@
 package Engines;
 
 import Services.Ship;
-public class Naive_Solver extends BattleshipEngine {
+public class NaiveSolver extends BattleshipEngine {
 
     @Override
     public void placeShip(Ship s) {
@@ -54,12 +54,7 @@ public class Naive_Solver extends BattleshipEngine {
     }
 
     @Override
-    public void fireASalvo() {
-        String fireCoordinates = generateRandomMapCoordinates();
-        char salvoRow = fireCoordinates.charAt(0);
-        int salvoColumn = Integer.parseInt(fireCoordinates.substring(1));
-
-
-
+    public String fireASalvo() {
+        return generateRandomMapCoordinates();
     }
 }//end of class

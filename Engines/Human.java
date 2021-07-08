@@ -38,49 +38,32 @@ public class Human extends Player {
             if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, s))
                 continue;
 
-            /*for (int i = rowOfFirst - 65; i <= rowOfSecond - 65; i++) {
-                for (int j = columnOfFirst - 1; j < columnOfSecond; j++) {
-                    arena.placePiece   (i,j,'O');
+            for (char i = rowOfFirst; i <= rowOfSecond; i++) {
+                for (int j = columnOfFirst; j <= columnOfSecond; j++) {
+                    arena.placePiece(rowOfFirst, columnOfFirst, arena.SHIP);
                 }
-            }*/
+            }
             break;
         }
     }
 
     @Override
-    public void fireASalvo() {
+    public String fireASalvo() {
         Scanner num = new Scanner(System.in);
-    }
-
-    /*
-     protected static void firingASalvo(Battlefield bf) {
-        Scanner num = new Scanner(System.in);
+        String firingPos = "A1";
         while (true) {
-            String firingPos = num.next().toUpperCase().trim();
+            System.out.print(name + ", enter the firing position : ");
+            firingPos = num.next().toUpperCase().trim();
 
-            char rowCoordinate = firingPos.charAt(0);
-            int columnCoordinate = Integer.parseInt(firingPos.substring(1));
-
-            if (!bf.isCorrectCoordinates(rowCoordinate, 'A', columnCoordinate, 9, null)) {
+            char rowCoord = firingPos.charAt(0);
+            int columnCoord = Integer.parseInt(firingPos.substring(1));
+            if (!arena.isCorrectCoordinates(rowCoord, 'A', columnCoord, 9, null)) {
                 System.out.println("Error! You entered the wrong coordinates! Try again:");
                 continue;
             }
-
-            char status = bf.salvoStatus(rowCoordinate - 65, columnCoordinate - 1);
-            if (status == bf.SHIP || status == bf.HIT) {
-                bf.placeResultOfSalvo(rowCoordinate - 65, columnCoordinate - 1, bf.HIT);
-                bf.printBattlefield(true);
-                if (isSunken(rowCoordinate, columnCoordinate, bf))
-                    System.out.println("You sank a ship!");
-                else
-                    System.out.println("You hit a ship! ");
-            } else if (status == bf.WATER || status == bf.MISS) {
-                bf.placeResultOfSalvo(rowCoordinate - 65, columnCoordinate - 1, bf.MISS);
-                bf.printBattlefield(true);
-                System.out.println("You missed!");
-            }
             break;
         }
+
+        return firingPos;
     }
-     */
 }//end of class

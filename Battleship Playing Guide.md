@@ -3,7 +3,7 @@ This is a PvE style Battleship game that allows the user to choose which Engine 
 is text-based, so you will need an IDE or code editor to run this in. 
 
 ---
-## How-to-Play
+## How-to-Begin
 This guide instructs the reader on how to use the Battleship text-based game engine. The rules of the game are the same as the official 
 version given by [Hasbro](https://www.hasbro.com/common/instruct/Battleship.pdf). At the start of the program, you will need to 
 give some details for the game to take place.
@@ -22,7 +22,8 @@ Following the ACTION MENU, you will be prompted to type your name. This will be 
   
 Type any one of the above letters (uppercase or lowercase is finem) to access that engine to play with. If any other letter is typed then the appropriate error message is displayed and the menu is shown again. 
 
-### BATTLESHIP GAME
+## Game Starts
+
 Once again this consists of two parts - Setup and Wartime. The Human will always go as Player 1. However, if the user
 wants they are free to modify the source code in the `Battleship.java` file to switch up the Players or add a menu.
 Player 2's actions are completely automated (obviously). 
@@ -83,6 +84,7 @@ An valid placement of a ship is when it does not break any of the following cond
 
 Once Player 1 has completed setup, **double press the Enter key** and Player 2 (Engine) will automatically place its
 ships. A message will be displayed indicating that Player 2 has completed the Setup and that War is about to begin
+
 
 ### WARTIME
 For Wartime, Player 1 wil go first. Player 1 will be shown Player 2's "Fog of War" (FOW) screen at the top and 
@@ -145,7 +147,7 @@ missed. This will be clearly displayed for P1 to view as well. So after P2's sho
 
 
 ```
-The Intermediate-Adversary hit your ship at I4. Fire back!
+The enemy hit your ship at I4. Fire back!
 
   1 2 3 4 5 6 7 8 9 10 
 A ~ X ~ ~ ~ ~ ~ ~ ~ ~ 
@@ -179,9 +181,9 @@ A3
 The game goes on until one players sinks all the ships of the other player. The appropriate celebratory message with 
 the winning player's name is displayed and then the game stops.
 
-#### Trapdoor
-There is a trapdoor built in for the user. At any point of the game, if they choose to exit, they should type in `2187AA23`
-and the program will terminate immediately.
+**Trapdoor**  
+There is a trapdoor built in for the user. At any point of the game (either Setup or Wartime), if they choose to exit,
+they should type in `2187AA23` and the program will terminate immediately.
 
 ---
 
@@ -190,4 +192,5 @@ and the program will terminate immediately.
 [2] Crombez, L., da Fonseca, G., & Gerard, Y. (2012). Efficient Algorithms for Battleship. _ACM_. Published. https://arxiv.org/pdf/2004.07354.pdf  
 [3] [Algorithm for positioning ships in Battleship game](https://stackoverflow.com/questions/10842571/algorithm-for-positioning-ships-in-battleship-game)  
 [4] [Battleship Playing Strategies](https://datagenetics.com/blog/december32011/index.html)  
-[5] Audinot, M., Bonnet, F., & Viennot, S. (2014). Optimal Strategies against a Random Opponent in Battleship. The 19th Game Programming Workshop 2014. Published. [https://ipsj.ixsq.nii.ac.jp/ej/](https://ipsj.ixsq.nii.ac.jp/ej/?action=repository_action_common_download&item_id=106500&item_no=1&attribute_id=1&file_no=1)
+[5] Audinot, M., Bonnet, F., & Viennot, S. (2014). Optimal Strategies against a Random Opponent in Battleship. 
+_The 19th Game Programming Workshop 2014_. Published. [https://ipsj.ixsq.nii.ac.jp/ej/](https://ipsj.ixsq.nii.ac.jp/ej/?action=repository_action_common_download&item_id=106500&item_no=1&attribute_id=1&file_no=1)

@@ -32,5 +32,5 @@ public abstract class Player {
      * fireASalvo() ---------------------------------------------------------------------
      * Allows for the Player to fire a shot at the enemies Battlefield.
      */
-    public abstract void fireASalvo();
+    public abstract String fireASalvo();
 }
