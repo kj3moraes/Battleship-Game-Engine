@@ -1,5 +1,6 @@
 
 import Engines.*;
+import Services.Battlefield;
 import Services.Ship;
 import java.util.Scanner;
 import static java.util.stream.IntStream.range;
@@ -77,22 +78,80 @@ public class Main {
 
         // WARTIME
         System.out.println("The game starts!");
+        String shot;
+        char shotRow;
+        int shotCol;
+        
         boolean didP1Win = false;
-        while (!didP1Win) {
+        while (true) {
+            player2.arena.printBattlefield(true);
+            printDivider();
+            player1.arena.printBattlefield(false);
+            shot = player1.fireASalvo();
+            shotRow = shot.charAt(0);
+            shotCol = Integer.parseInt(shot.substring(1));
 
+            // APPROPRIATE MESSAGE FOR THE SALVO
+            if (player2.arena.isHit(shotRow, shotCol) ) {
+                player2.arena.placePiece(shotRow, shotCol, player2.arena.HIT);
+                if (player2.arena.isSunken(shotRow, shotCol)) {
+                    System.out.println("You sank a ship!");
+                } else {
+                    System.out.println("You hit a ship");
+                }
+            } else if (player2.arena.isMiss(shotRow, shotCol)) {
+                player2.arena.placePiece(shotRow, shotCol, player2.arena.MISS);
+                System.out.println("You missed! Try again next turn");
+            }
+
+            // DID P1 WIN ?
+            if (player2.arena.isNavyAfloat()) {
+                didP1Win = true;
+                break;
+            }
+            promptEnterKey();
+
+            // P2 PLAYS
+            System.out.println("Please wait while the engine makes its move");
+            shot = player2.fireASalvo();
+            shotRow = shot.charAt(0);
+            shotCol = Integer.parseInt(shot.substring(1));
+
+            // APPROPRIATE MESSAGE FOR THE SALVO
+            if (player1.arena.isHit(shotRow, shotCol) ) {
+                player1.arena.placePiece(shotRow, shotCol, player1.arena.HIT);
+                if (player1.arena.isSunken(shotRow, shotCol)) {
+                    System.out.println("The engine sank your ship at " + shot);
+                } else {
+                    System.out.println("The engine hit your ship at " + shot);
+                }
+            } else if (player2.arena.isMiss(shotRow, shotCol)) {
+                player2.arena.placePiece(shotRow, shotCol, player2.arena.MISS);
+                System.out.println("The engine missed.");
+            }
+
+            // DID P2 WIN ?
+            if (player1.arena.isNavyAfloat()) {
+                break;
+            }
         }
 
         // GAME ENDS
         System.out.println("You sank the last ship. You won. Congratulations!");
         if (didP1Win)
-            System.out.println("Player 1 won the game!");
+            System.out.printf("Congrats %s, you have won this game of Battleship!", humanName);
         else
-            System.out.println("Player 2 won the game!");
+            System.out.println("The Engine won this game of Battleship!");
+    }
+
+    private static void determineShotResult(Battlefield enemy, String firingCoord, boolean isEngine) {
+        char shotRow = firingCoord.charAt(0);
+        int columnCoord = Integer.parseInt(firingCoord.substring(1));
     }
 
 
     private static void promptEnterKey() {
-        System.out.println("Press Enter and pass the move to another player");
+        System.out.println("Press Enter and wait for the engines move");
         new Scanner(System.in).nextLine();
         clearScreen();
     }

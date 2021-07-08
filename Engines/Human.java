@@ -66,6 +66,8 @@ public class Human extends Player {
 
         return firingPos;
     }
+
+
 /*if (arena.isHit(rowCoord, columnCoord) ) {
                 arena.placePiece(rowCoord, columnCoord, arena.HIT);
                 if (arena.isSunken(rowCoord, columnCoord)) {
