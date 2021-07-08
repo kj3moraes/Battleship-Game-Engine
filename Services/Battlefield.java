@@ -52,7 +52,11 @@ public class Battlefield {
     }
 
     public boolean isHit(char row, int col) {
-        return salvoStatus(row, col) == HIT;
+        return salvoStatus(row, col) == SHIP || salvoStatus(row, col) == HIT;
+    }
+
+    public boolean isMiss(char row, int col) {
+        return salvoStatus(row, col) == WATER;
     }
 
     /**
@@ -161,13 +165,11 @@ public class Battlefield {
                     return false;
                 }
             }
+            // CHECK IF THE SHIP IS CROSSING OUR TOUCHING ANY OTHER PRE-EXISTING SHIP
+            if (isCrossing(roF, roS, coF, coS) || isTouching(roF, roS, coF, coS, false)) {
+                return false;
+            }
         }
-
-        // CHECK IF THE SHIP IS CROSSING OUR TOUCHING ANY OTHER PRE-EXISTING SHIP
-        if (isCrossing(roF, roS, coF, coS) || isTouching(roF, roS, coF, coS, false)) {
-            return false;
-        }
-
         return true;
     }
 

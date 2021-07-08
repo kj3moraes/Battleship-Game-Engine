@@ -50,12 +50,34 @@ public class Human extends Player {
     @Override
     public String fireASalvo() {
         Scanner num = new Scanner(System.in);
-        System.out.println("Enter coords ");
-        String firingPos = num.next().toUpperCase().trim();
+        String firingPos = "A1";
+        while (true) {
+            System.out.print(name + ", enter the firing position : ");
+            firingPos = num.next().toUpperCase().trim();
+
+            char rowCoord = firingPos.charAt(0);
+            int columnCoord = Integer.parseInt(firingPos.substring(1));
+            if (!arena.isCorrectCoordinates(rowCoord, 'A', columnCoord, 9, null)) {
+                System.out.println("Error! You entered the wrong coordinates! Try again:");
+                continue;
+            }
+            break;
+        }
 
         return firingPos;
     }
-
+/*if (arena.isHit(rowCoord, columnCoord) ) {
+                arena.placePiece(rowCoord, columnCoord, arena.HIT);
+                if (arena.isSunken(rowCoord, columnCoord)) {
+                    System.out.println("You sank a ship!");
+                } else {
+                    System.out.println("You hit a ship");
+                }
+            } else if (arena.isMiss(rowCoord, columnCoord)) {
+                arena.placePiece(rowCoord, columnCoord, arena.MISS);
+                System.out.println("You missed! Try again next turn");
+            }
+            break;*/
     /*
      protected static void firingASalvo(Battlefield bf) {
         Scanner num = new Scanner(System.in);

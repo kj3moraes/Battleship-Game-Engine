@@ -27,6 +27,3 @@ From then on, follow the Battleship Playing Guide.
         * `Naive_Solver.java` - the easy engine
         * `Intermediate_Adversary,java` - the medium engine   
         * `Boogeyman.java` - the hard engine
-        
-
-

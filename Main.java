@@ -1,11 +1,6 @@
 
-import Engines.BattleshipEngine;
-import Engines.Human;
-import Engines.Intermediate_Adversary;
-import Engines.Naive_Solver;
-import Services.Battlefield;
+import Engines.*;
 import Services.Ship;
-
 import java.util.Scanner;
 import static java.util.stream.IntStream.range;
 
@@ -44,7 +39,7 @@ public class Main {
         do {
             System.out.println("What engine would you like to play against?");
             System.out.println("\t[N]aive-Solver (Easy)\n\t[I]ntermediate-Solver (Medium) \n\t[B]oogeyman (Crazy)");
-            engine = txt.next().toUpperCase().charAt(0);
+            engine = txt.next().toUpperCase().trim().charAt(0);
             switch (action) {
                 case 'N' :
                     player2 = new Naive_Solver();
@@ -57,8 +52,12 @@ public class Main {
                 case 'B' :
                     break;
 
+                default:
+                    System.out.println("Type in one of the letters : N,I,B");
+                    continue;
             }
-        }while (engine != 'N' || engine != 'I' || engine != 'B');
+            break;
+        } while (engine != 'N' || engine != 'I' || engine != 'B');
 
 
         // PLAYER 1 NAVY SETUP
@@ -79,9 +78,11 @@ public class Main {
         // WARTIME
         System.out.println("The game starts!");
         boolean didP1Win = false;
+        while (!didP1Win) {
 
-        promptEnterKey();
+        }
 
+        // GAME ENDS
         System.out.println("You sank the last ship. You won. Congratulations!");
         if (didP1Win)
             System.out.println("Player 1 won the game!");
