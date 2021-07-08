@@ -55,11 +55,6 @@ public class Naive_Solver extends BattleshipEngine {
 
     @Override
     public String fireASalvo() {
-        String fireCoordinates = generateRandomMapCoordinates();
-        char salvoRow = fireCoordinates.charAt(0);
-        int salvoColumn = Integer.parseInt(fireCoordinates.substring(1));
-
-
-        return fireCoordinates;
+        return generateRandomMapCoordinates();
     }
 }//end of class
