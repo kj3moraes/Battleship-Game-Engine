@@ -92,7 +92,7 @@ public class Battlefield {
      * @param col - column coordiante
      * @return - one of BASE PIECE or ADDED PIECE(s)
      */
-    public char salvoStatus(char row, int col) {
+    private char salvoStatus(char row, int col) {
         return battlefield[row - 65][col - 1];
     }
 

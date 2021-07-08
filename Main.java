@@ -75,6 +75,7 @@ public class Main {
         // PLAYER 2 NAVY SETUP
         System.out.println("\nKindly wait while the machine places its ships");
         for (int i = 0; i < NO_OF_SHIPS; i++) {
+            assert player2 != null;
             player2.placeShip(SHIPS[i]);
         }
 

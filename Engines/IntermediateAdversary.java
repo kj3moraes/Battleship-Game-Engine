@@ -22,4 +22,13 @@ public class IntermediateAdversary extends NaiveSolver {
         return "A5";
     }
 
+    /**
+     * createTargets(List<Integer>, List<Integer>) --------------------------------------
+     * Produces a target list and a hunting list.
+     * @param targetList - parameter to create a list
+     * @param huntList - parameter to
+     */
+    private void createTargets(List<Integer> targetList, List<Integer> huntList) {
+
+    }
 }//end of class
