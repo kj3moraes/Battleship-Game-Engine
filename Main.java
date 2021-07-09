@@ -16,7 +16,7 @@ public class Main {
         BattleshipEngine player2 = null;
 
         // MENU 1 [ACTION MENU]
-        System.out.println("What would you like to do?\n\t[s]tart\n\te[x]it");
+        System.out.println("\nWhat would you like to do?\n\t[s]tart\n\te[x]it");
         char action = txt.next().toLowerCase().charAt(0);
         switch (action) {
             case 'x' :
@@ -31,17 +31,16 @@ public class Main {
         }
 
         // BEGINNING WITH HUMAN
-        System.out.println("Enter your name : ");
+        System.out.print("\nEnter your name : ");
         String humanName = setup.nextLine();
         player1 = new Human(humanName);
 
         // MENU 2 [ENGINE SELECTION MENU]
         char engine;
         do {
-            System.out.println("What engine would you like to play against?");
+            System.out.println("\nWhat engine would you like to play against?");
             System.out.println("\t[N]aive-Solver (Easy)\n\t[I]ntermediate-Solver (Medium) \n\t[B]oogeyman (Crazy)");
             engine = txt.next().toUpperCase().trim().charAt(0);
-            System.out.println(engine == 'N');
             switch (engine) {
                 case 'N' :
                     player2 = new NaiveSolver();
@@ -77,7 +76,10 @@ public class Main {
         for (int i = 0; i < NO_OF_SHIPS; i++) {
             assert player2 != null;
             player2.placeShip(SHIPS[i]);
+            player2.arena.printBattlefield(false);
         }
+
+        promptEnterKey();
 
         // WARTIME
         System.out.println("The game starts!");
@@ -158,7 +160,7 @@ public class Main {
 
 
     private static void promptEnterKey() {
-        System.out.println("Press Enter and wait for the engines move");
+        System.out.println("Press Enter for the next step");
         new Scanner(System.in).nextLine();
         clearScreen();
     }

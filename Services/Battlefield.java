@@ -14,7 +14,7 @@ public class Battlefield {
     /** DEFINITIONS ---------------------------------------------------------------------
      *  > NORMALIZED
      *      This means that given a set of coordinates for a ship placement
-     *      (roF, roS, coF, coS) then roF < roS and coF < coS.
+     *      (roF, roS, coF, coS) then roF <= roS and coF <= coS.
      *
      *  > TOUCHING
      *      Another ship's placement cannot be either to the immediate left or the
@@ -153,12 +153,8 @@ public class Battlefield {
 
         // CHECK FOR COORDINATES OUTSIDE THE BOARD
         if (roF > 'J' || roF < 'A' || roS > 'J' || roS < 'A') {
-            System.out.print("\nError! Invalid Row Coordinates. Please enter a value between A and J.");
-            System.out.println(" Try again :");
             return false;
         } else if (coF > 10 || coF < 1 || coS > 10 || coS < 1) {
-            System.out.print("\nError! Invalid Column Coordinates. Please enter a value between 1 and 10.");
-            System.out.println(" Try again :");
             return false;
         }
 

@@ -35,12 +35,15 @@ public class Human extends Player {
             rowOfFirst = (char) Math.min(rowOfFirst, rowOfSecond);
             rowOfSecond = (char) temp;
 
-            if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, s))
+            if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, s)) {
+                System.out.print("\nError! Invalid Coordinates. Please enter a value between A and J for rows an.");
+                System.out.println(" Try again :");
                 continue;
+            }
 
             for (char i = rowOfFirst; i <= rowOfSecond; i++) {
                 for (int j = columnOfFirst; j <= columnOfSecond; j++) {
-                    arena.placePiece(rowOfFirst, columnOfFirst, arena.SHIP);
+                    arena.placePiece(i, j, arena.SHIP);
                 }
             }
             break;
