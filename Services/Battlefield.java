@@ -26,16 +26,7 @@ public class Battlefield {
      */
 
     public Battlefield() {
-        battlefield  = new char[10][10];
-        this.HIT = 'X';
-        this.MISS = 'M';
-        this.WATER = '~';
-        this.SHIP = 'O';
-
-        // FOG OF WAR
-        for (char[] row : battlefield) {
-            Arrays.fill(row, WATER);
-        }
+          this('X', 'M', '~', '0');
     }
 
     public Battlefield(char HIT, char MISS, char WATER, char SHIP) {
@@ -176,9 +167,7 @@ public class Battlefield {
                 }
             }
             // CHECK IF THE SHIP IS CROSSING OUR TOUCHING ANY OTHER PRE-EXISTING SHIP
-            if (isCrossing(roF, roS, coF, coS) || isTouching(roF, roS, coF, coS, false)) {
-                return false;
-            }
+            return !isCrossing(roF, roS, coF, coS) && !isTouching(roF, roS, coF, coS, false);
         }
         return true;
     }
