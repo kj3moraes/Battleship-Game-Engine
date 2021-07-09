@@ -6,6 +6,7 @@ import Services.Ship;
 public abstract class Player {
     String name;
     public Battlefield arena;
+    private static final String TRAPDOOR = "2187AA23";
 
     public Player() {
         name = "Luke Skywalker";
@@ -19,6 +20,19 @@ public abstract class Player {
 
     public String getName() {
         return name;
+    }
+
+    /**
+     * trapdoorFilter(String) -----------------------------------------------------------
+     * Checks if the string is indeed the trapdoor
+     * @param input - string to be checked
+     * @return - the input string (if it passed the filter)
+     */
+    public static String trapdoorFilter(String input) {
+        if (input.equals(TRAPDOOR)) {
+            System.exit(0);
+        }
+        return input;
     }
 
     /**

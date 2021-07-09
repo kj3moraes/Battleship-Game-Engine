@@ -18,8 +18,8 @@ public class Human extends Player {
         System.out.println("\nEnter the coordinates for " + s.getShipName() + " (" +
                 s.getShipLength() + " cells): ");
         while (true) {
-            String firstCoordinate = sc.next().toUpperCase();
-            String secondCoordinate = sc.next().toUpperCase();
+            String firstCoordinate = trapdoorFilter(sc.next().toUpperCase());
+            String secondCoordinate = trapdoorFilter(sc.next().toUpperCase());
 
             char rowOfFirst = firstCoordinate.charAt(0);
             char rowOfSecond = secondCoordinate.charAt(0);
@@ -53,10 +53,10 @@ public class Human extends Player {
     @Override
     public String fireASalvo() {
         Scanner num = new Scanner(System.in);
-        String firingPos = "A1";
+        String firingPos;
         while (true) {
             System.out.print(name + ", enter the firing position : ");
-            firingPos = num.next().toUpperCase().trim();
+            firingPos = trapdoorFilter(num.next().toUpperCase().trim());
 
             char rowCoord = firingPos.charAt(0);
             int columnCoord = Integer.parseInt(firingPos.substring(1));
@@ -66,7 +66,6 @@ public class Human extends Player {
             }
             break;
         }
-
         return firingPos;
     }
 }//end of class

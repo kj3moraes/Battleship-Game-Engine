@@ -1,6 +1,5 @@
 
 import Engines.*;
-import Services.Battlefield;
 import Services.Ship;
 import java.util.Scanner;
 import static java.util.stream.IntStream.range;
@@ -148,16 +147,6 @@ public class Main {
         else
             System.out.println("The Engine won this game of Battleship!");
     }
-
-    private static void trapdoorCheck(String input) {
-
-    }
-
-    private static void determineShotResult(Battlefield enemy, String firingCoord, boolean isEngine) {
-        char shotRow = firingCoord.charAt(0);
-        int columnCoord = Integer.parseInt(firingCoord.substring(1));
-    }
-
 
     private static void promptEnterKey() {
         System.out.println("Press Enter for the next step");
