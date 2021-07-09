@@ -36,8 +36,9 @@ public class Human extends Player {
             rowOfSecond = (char) temp;
 
             if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, s)) {
-                System.out.print("\nError! Invalid Coordinates. Please enter a value between A and J for rows an.");
-                System.out.println(" Try again :");
+                System.out.print("\nError! Invalid Coordinates.");
+                System.out.println("Please enter a value between A and J for rows and 1 and 10 for columns .");
+                System.out.println("Try again :\n\n");
                 continue;
             }
 
