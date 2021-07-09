@@ -14,7 +14,7 @@ of the code.
 
 ### How to Play this Text-based Game
 To play this game you will need to download the source code to any folder you like. Open an IDE or a code editor that
-can compile and run Java code and run `Main.java`. This will bring up the console and prompt you with the _ACTION MENU_. 
+can compile and run Java code and compile all the Java files. Then run `Main.java`. This will bring up the console and prompt you with the _ACTION MENU_. 
 From then on, follow the Battleship Playing Guide.
 
 **Class Descriptions**
