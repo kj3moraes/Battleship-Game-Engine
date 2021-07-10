@@ -58,7 +58,7 @@ public class IntermediateAdversary extends NaiveSolver {
             targets.remove(temp);
         }
         //if hunts is empty, pick a target from targets instead which holds remaining valid targets
-        else if(hunts.isEmpty()){
+        else {
             //same process as above
             index = rng.nextInt(targets.size());
             temp = targets.get(index);

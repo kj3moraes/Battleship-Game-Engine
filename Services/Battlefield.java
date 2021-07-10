@@ -13,6 +13,7 @@ public class Battlefield {
 
     //CODES FOR COORDINATE PLACEMENT
     public static final int VALID_COORD = 0x0F;
+
     private static final int TOUCHING = 0x1C;
     private static final int CROSSING = 0xAF;
     private static final int OUT_OF_BOARD = 0xBD;
@@ -225,7 +226,7 @@ public class Battlefield {
             for (int j = coF - 1; j <= coS - 1; j++) {
                 // HORIZONTAL SHIP PLACEMENT
                 if (roF == roS) {
-                    // IS THERE A SHIP
+                    // IS THERE A SHIP A COLUMN TO THE RIGHT
                     if (coF - 2 >= 0)
                         touch = battlefield[roF - 65][coF - 2] == SHIP;
                     if (coS <= 9)
