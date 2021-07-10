@@ -6,6 +6,11 @@ import Services.Ship;
 public abstract class Player {
     String name;
     public Battlefield arena;
+    public Ship[] ships = { new Ship("Aircraft Carrier", 5),
+                            new Ship("Battleship", 4),
+                            new Ship("Cruiser", 3),
+                            new Ship("Submarine", 3),
+                            new Ship("Destroyer", 2)};
     private static final String TRAPDOOR = "2187AA23";
 
     public Player() {

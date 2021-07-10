@@ -1,16 +1,17 @@
 package Services;
 
-public enum Ship {
-    ARC("Aircraft Carrier", 5),
-    BTL("Battleship", 4),
-    CRU("Cruiser", 3),
-    SUB("Submarine", 3),
-    DES("Destroyer", 2);
+import java.util.Stack;
 
-    public final String shipName;
-    public final int shipLength;
+public class Ship {
+    public String shipName;
+    public int shipLength;
+    private Stack<String> position;
 
-    Ship(String name, int length) { shipName = name; shipLength = length;}
+    public Ship(String name, int length) {
+        this.shipName = name;
+        this.shipLength = length;
+        position = new Stack<String>();
+    }
 
     public String getShipName() {
         return shipName;
@@ -19,4 +20,6 @@ public enum Ship {
     public int getShipLength() {
         return shipLength;
     }
+
+
 }
