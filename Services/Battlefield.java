@@ -11,6 +11,14 @@ public class Battlefield {
     public final char MISS;
     public final char SHIP;
 
+    //CODES FOR COORDINATE PLACEMENT
+    public static final int VALID_COORD = 0x0F;
+    private static final int TOUCHING = 0x1C;
+    private static final int CROSSING = 0xAF;
+    private static final int OUT_OF_BOARD = 0xBD;
+    private static final int WRONG_LENGTH = 0xFF;
+    private static final int MISALIGN = 0x4E;
+
     /** DEFINITIONS ---------------------------------------------------------------------
      *  > NORMALIZED
      *      This means that given a set of coordinates for a ship placement
@@ -50,7 +58,7 @@ public class Battlefield {
      * @return - whether or not the row and column specify SHIP or HIT
      */
     public boolean isHit(char row, int col) {
-        return salvoStatus(row, col) == SHIP || salvoStatus(row, col) == HIT;
+        return salvoStatus(row, col) == SHIP;
     }
 
     /**
@@ -95,6 +103,7 @@ public class Battlefield {
     public boolean isNavyAfloat() {
         for (char[] row : battlefield) {
             for (char status : row) {
+                System.out.println();
                 if (status == SHIP)
                     return true;
             }
@@ -206,7 +215,7 @@ public class Battlefield {
      * @param roS - row of the second coordinate
      * @param coF - column of the first coordinate
      * @param coS - column of the second coordinate
-     * @param isWartime -
+     * @param isWartime - specifies if we are playing during the second phase
      * @return - if the ship is touching any others (during setup)
      */
     public boolean isTouching(char roF, char roS, int coF, int coS, boolean isWartime) {
@@ -214,17 +223,23 @@ public class Battlefield {
         boolean touch = false;
         for (int i = roF - 65; i <= roS - 65; i++) {
             for (int j = coF - 1; j <= coS - 1; j++) {
+                // HORIZONTAL SHIP PLACEMENT
                 if (roF == roS) {
+                    // IS THERE A SHIP
                     if (coF - 2 >= 0)
                         touch = battlefield[roF - 65][coF - 2] == SHIP;
                     if (coS <= 9)
                         touch = battlefield[roF - 65][coS] == SHIP || touch;
 
+                    // IS THERE A SHIP PIECE DIRECTLY ONE ROW UP ?
                     if (roF - 66 >= 0)
                         touch = battlefield[roF - 66][j] == SHIP || touch;
+                    // IS THERE A SHIP PIECE DIRECTLY ONE ROW DOWN ?
                     if (roS - 64 <= 9)
                         touch = battlefield[roS - 64][j] == SHIP || touch;
-                } else {
+                }
+                // VERTICAL SHIP PLACEMENT
+                else {
                     if (roF - 66 >= 0)
                         touch = battlefield[roF - 66][coF - 1] == SHIP;
                     if (roS - 64 <= 9)
@@ -239,12 +254,22 @@ public class Battlefield {
                     return true;
                 }
                 if (touch) {
-                    System.out.println("Error! You placed it too close to another one. Try again:");
+                    System.out.println("Error! You placed it too close to another one. \nTry again!");
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    public void analyzeErrorInPlacement(int errorOut) {
+        switch (errorOut) {
+            case TOUCHING -> System.out.println("regf");
+            case CROSSING -> System.out.println("eonge");
+            case OUT_OF_BOARD -> System.out.println("owvrf");
+            case MISALIGN -> System.out.println("jrge");
+            case WRONG_LENGTH -> System.out.println("jkgnjrnge");
+        }
     }
 
     /**

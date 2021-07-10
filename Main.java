@@ -75,8 +75,8 @@ public class Main {
         for (int i = 0; i < NO_OF_SHIPS; i++) {
             assert player2 != null;
             player2.placeShip(SHIPS[i]);
-            player2.arena.printBattlefield(false);
         }
+        player2.arena.printBattlefield(false);
 
         promptEnterKey();
 
@@ -96,7 +96,7 @@ public class Main {
             shotCol = Integer.parseInt(shot.substring(1));
 
             // APPROPRIATE MESSAGE FOR THE SALVO
-            if (player2.arena.isHit(shotRow, shotCol) ) {
+            if (player2.arena.isHit(shotRow, shotCol)) {
                 player2.arena.placePiece(shotRow, shotCol, player2.arena.HIT);
                 if (player2.arena.isSunken(shotRow, shotCol)) {
                     System.out.println("You sank a ship!");
@@ -109,11 +109,10 @@ public class Main {
             }
 
             // DID P1 WIN ?
-            if (player2.arena.isNavyAfloat()) {
+            if (!player2.arena.isNavyAfloat()) {
                 didP1Win = true;
                 break;
             }
-            promptEnterKey();
 
             // P2 PLAYS
             System.out.println("Please wait while the engine makes its move");
@@ -129,13 +128,13 @@ public class Main {
                 } else {
                     System.out.println("The engine hit your ship at " + shot);
                 }
-            } else if (player2.arena.isMiss(shotRow, shotCol)) {
-                player2.arena.placePiece(shotRow, shotCol, player2.arena.MISS);
+            } else if (player1.arena.isMiss(shotRow, shotCol)) {
+                player1.arena.placePiece(shotRow, shotCol, player2.arena.MISS);
                 System.out.println("The engine missed.");
             }
 
             // DID P2 WIN ?
-            if (player1.arena.isNavyAfloat()) {
+            if (!player1.arena.isNavyAfloat()) {
                 break;
             }
         }

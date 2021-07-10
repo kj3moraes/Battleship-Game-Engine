@@ -75,7 +75,8 @@ Enter the coordinates of the Submarine (3 cells):
 ```
 
 #### VALID PLACEMENT
-An valid placement of a ship is when it does not break any of the following conditions. An appropriate error message will be displayed if there is something wrong with the input. :
+An valid placement of a ship is when it does not break any of the following conditions. An appropriate error message 
+will be displayed if there is something wrong with the input. :
 * The specified coordinates are too small or too large for the ship
 * The specified coordinates do not fit on a line (either horizontally or vertically) 
 * The coordinates are invalid (eg. letters > J or numbers outside the 1 to 10 range)

@@ -14,10 +14,11 @@ public class Human extends Player {
 
     @Override
     public void placeShip(Ship s) {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc;
         System.out.println("\nEnter the coordinates for " + s.getShipName() + " (" +
                 s.getShipLength() + " cells): ");
         while (true) {
+            sc = new Scanner(System.in);
             String firstCoordinate = trapdoorFilter(sc.next().toUpperCase());
             String secondCoordinate = trapdoorFilter(sc.next().toUpperCase());
 
@@ -37,7 +38,6 @@ public class Human extends Player {
 
             if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, s)) {
                 System.out.print("\nError! Invalid Coordinates.");
-                System.out.println("Please enter a value between A and J for rows and 1 and 10 for columns .");
                 System.out.println("Try again :\n\n");
                 continue;
             }
