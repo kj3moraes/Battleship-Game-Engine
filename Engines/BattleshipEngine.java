@@ -14,7 +14,7 @@ public abstract class BattleshipEngine extends Player {
      */
     protected String generateRandomMapCoordinates() {
         rng = new Random((int)(1 * 10000 * Math.random()));
-        char row = (char) (1 + rng.nextInt(10) + 'A');
+        char row = (char) (rng.nextInt(10) + 'A');
         int col = 1 + rng.nextInt(10);
         return row + "" + col;
     }
