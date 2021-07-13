@@ -1,8 +1,6 @@
 
 import Players.*;
-import Players.Engines.BattleshipEngine;
-import Players.Engines.IntermediateAdversary;
-import Players.Engines.NaiveSolver;
+import Players.Engines.*;
 
 import java.util.Scanner;
 import static java.util.stream.IntStream.range;
@@ -87,8 +85,8 @@ public class Main {
         String shot;
         char shotRow;
         int shotCol;
-        
         boolean didP1Win = false;
+
         while (true) {
             player2.arena.printBattlefield(true);
             printDivider();

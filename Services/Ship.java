@@ -53,7 +53,7 @@ public class Ship {
      * @param salvoCoordinate - coordinate of the salvo.
      */
     public void removeShipPart(String salvoCoordinate) {
-
+        position.remove(salvoCoordinate);
     }
 
     /**
