@@ -17,8 +17,8 @@ public class IntermediateAdversary extends NaiveSolver {
     }
 
     @Override
-    public String fireASalvo() {
-        return "A5";
+    public void fireASalvo() {
+
     }
 
     /**

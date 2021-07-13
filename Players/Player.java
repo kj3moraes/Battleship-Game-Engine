@@ -54,5 +54,14 @@ public abstract class Player {
      * fireASalvo() ---------------------------------------------------------------------
      * Allows for the Player to fire a shot at the enemies Battlefield.
      */
-    public abstract String fireASalvo();
+    public abstract void fireASalvo();
+
+    public boolean isNavyAfloat() {
+        for (int i = 0; i <= Ship.NO_OF_SHIPS; i++) {
+            if (!SHIPS.get(i).isShipSunken()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -3,6 +3,8 @@ package Services;
 import java.util.ArrayList;
 
 public class Ship {
+    public static final int NO_OF_SHIPS = 5;
+
     public String shipName;
     public int shipLength;
     private final ArrayList<String> position;

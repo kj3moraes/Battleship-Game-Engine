@@ -1,5 +1,6 @@
 package Services;
 import java.util.Arrays;
+import Services.Ship;
 public class Battlefield {
     private final char[][] battlefield;
 
@@ -94,22 +95,6 @@ public class Battlefield {
      */
     private char salvoStatus(char row, int col) {
         return battlefield[row - 65][col - 1];
-    }
-
-    /**
-     * isNavyAfloat() -------------------------------------------------------------------
-     * Finds out if there is any ship / part of a ship still surviving
-     * @return - False if all ships are destroyed. True otherwise
-     */
-    public boolean isNavyAfloat() {
-        for (char[] row : battlefield) {
-            for (char status : row) {
-                System.out.println();
-                if (status == SHIP)
-                    return true;
-            }
-        }
-        return false;
     }
 
     /**
@@ -265,12 +250,14 @@ public class Battlefield {
 
     public void analyzeErrorInPlacement(int errorOut) {
         switch (errorOut) {
-            case TOUCHING -> System.out.println("regf");
-            case CROSSING -> System.out.println("eonge");
-            case OUT_OF_BOARD -> System.out.println("owvrf");
-            case MISALIGN -> System.out.println("jrge");
-            case WRONG_LENGTH -> System.out.println("jkgnjrnge");
+            case TOUCHING -> System.out.print("You placed the ships too close to each other");
+            case CROSSING -> System.out.print("Your ship cannot cross another ship");
+            case OUT_OF_BOARD -> System.out.print("The row coordinates must be between A and J and " +
+                    "the column coordinates must be between 1 and 10");
+            case MISALIGN -> System.out.print("The placement is not aligned horizontally or vertically");
+            case WRONG_LENGTH -> System.out.print("Your placement has wrong length");
         }
+        System.out.println("Try again!");
     }
 
     /**

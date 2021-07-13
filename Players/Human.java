@@ -1,6 +1,4 @@
 package Players;
-import Services.Ship;
-
 import java.util.Scanner;
 
 public class Human extends Player {
@@ -54,7 +52,7 @@ public class Human extends Player {
     }
 
     @Override
-    public String fireASalvo() {
+    public void fireASalvo() {
         Scanner num = new Scanner(System.in);
         String firingPos;
         while (true) {
