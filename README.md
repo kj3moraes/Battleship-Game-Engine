@@ -19,7 +19,7 @@ From then on, follow the Battleship Playing Guide.
 
 **Class Descriptions**
 * `Main.java` - houses all the interacting piece. Is the executable file to play the game
-* `Ship.java` - enum containing the specifications of the Ships used.
+* `Ship.java` - class containing the specifications of the Ships used and its respective position on the Battlefield
 * `Battlefield.java`- class that provides template for the Battlefield object - the playable arena
 * `Player.java` - abstract class outlining how a player should play
     * `Human.java` - a human player 
