@@ -3,25 +3,27 @@ package Players;
 import Services.Battlefield;
 import Services.Ship;
 
+import java.util.ArrayList;
+
 public abstract class Player {
     String name;
     public Battlefield arena;
-    protected final Ship[] SHIPS = {new Ship("Aircraft Carrier", 5),
-            new Ship("Battleship", 4),
-            new Ship("Cruiser", 3),
-            new Ship("Submarine", 3),
-            new Ship("Destroyer", 2)};
+    protected ArrayList<Ship> SHIPS;
 
     private static final String TRAPDOOR = "2187AA23";
 
     public Player() {
-        name = "Luke Skywalker";
-        arena = new Battlefield();
+        this("Luke Skywalker");
     }
 
     public Player(String name) {
         this.name = name;
         arena = new Battlefield();
+        SHIPS.add(new Ship("Aircraft Carrier", 5));
+        SHIPS.add(new Ship("Battleship", 4));
+        SHIPS.add(new Ship("Cruiser", 3));
+        SHIPS.add(new Ship("Submarine", 3));
+        SHIPS.add(new Ship("Destroyer", 2));
     }
 
     public String getName() {

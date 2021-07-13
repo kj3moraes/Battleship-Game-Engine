@@ -7,6 +7,7 @@ public class Ship {
     public int shipLength;
     private final ArrayList<String> position;
 
+
     public Ship(String name, int length) {
         this.shipName = name;
         this.shipLength = length;
@@ -47,6 +48,8 @@ public class Ship {
     /**
      * removeShipPart(String) -----------------------------------------------------------
      * Removes a part of the ship that has been hit by the salvo
+     *
+     * REQUIRES : salvoCoordinates must be a hit.
      * @param salvoCoordinate - coordinate of the salvo.
      */
     public void removeShipPart(String salvoCoordinate) {

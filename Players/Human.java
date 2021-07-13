@@ -16,8 +16,8 @@ public class Human extends Player {
     @Override
     public void placeShip(int shipIndex) {
         Scanner sc;
-        System.out.println("\nEnter the coordinates for " + SHIPS[shipIndex].getShipName() + " (" +
-                SHIPS[shipIndex].getShipLength() + " cells): ");
+        System.out.println("\nEnter the coordinates for " + SHIPS.get(shipIndex).getShipName() + " (" +
+                SHIPS.get(shipIndex).getShipLength() + " cells): ");
         while (true) {
             sc = new Scanner(System.in);
             String firstCoordinate = trapdoorFilter(sc.next().toUpperCase());
@@ -37,7 +37,7 @@ public class Human extends Player {
             rowOfFirst = (char) Math.min(rowOfFirst, rowOfSecond);
             rowOfSecond = (char) temp;
 
-            if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, SHIPS[shipIndex])) {
+            if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, SHIPS.get(shipIndex))) {
                 System.out.print("\nError! Invalid Coordinates.");
                 System.out.println("Try again :\n\n");
                 continue;
@@ -48,7 +48,7 @@ public class Human extends Player {
                     arena.placePiece(i, j, arena.SHIP);
                 }
             }
-            SHIPS[shipIndex].storeShipPlacement(rowOfFirst, rowOfFirst, columnOfFirst, columnOfSecond);
+            SHIPS.get(shipIndex).storeShipPlacement(rowOfFirst, rowOfFirst, columnOfFirst, columnOfSecond);
             break;
         }
     }
