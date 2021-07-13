@@ -1,4 +1,6 @@
-package Engines;
+package Players.Engines;
+
+import Players.Player;
 
 import java.util.Random;
 

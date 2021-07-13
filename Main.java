@@ -1,6 +1,9 @@
 
-import Engines.*;
-import Services.Ship;
+import Players.*;
+import Players.Engines.BattleshipEngine;
+import Players.Engines.IntermediateAdversary;
+import Players.Engines.NaiveSolver;
+
 import java.util.Scanner;
 import static java.util.stream.IntStream.range;
 
@@ -8,7 +11,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner txt = new Scanner(System.in), setup = new Scanner(System.in);
         final int NO_OF_SHIPS = 5;
-        final Ship[] SHIPS = {Ship.ARC, Ship.BTL, Ship.CRU, Ship.SUB, Ship.DES};
 
         // DEFINING THE PLAYERS
         Human player1;
@@ -64,7 +66,7 @@ public class Main {
         System.out.println("\nPlayer 1, place your ships on the game field\n");
         player1.arena.printBattlefield(false);
         for (int i = 0; i < NO_OF_SHIPS; i++) {
-            player1.placeShip(SHIPS[i]);
+            player1.placeShip(0);
             player1.arena.printBattlefield(false);
         }
 
@@ -74,7 +76,7 @@ public class Main {
         System.out.println("\nKindly wait while the machine places its ships");
         for (int i = 0; i < NO_OF_SHIPS; i++) {
             assert player2 != null;
-            player2.placeShip(SHIPS[i]);
+            player2.placeShip(i);
         }
         player2.arena.printBattlefield(false);
 

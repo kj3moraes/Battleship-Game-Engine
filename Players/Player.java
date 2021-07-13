@@ -1,4 +1,4 @@
-package Engines;
+package Players;
 
 import Services.Battlefield;
 import Services.Ship;
@@ -6,11 +6,12 @@ import Services.Ship;
 public abstract class Player {
     String name;
     public Battlefield arena;
-    public Ship[] ships = { new Ship("Aircraft Carrier", 5),
-                            new Ship("Battleship", 4),
-                            new Ship("Cruiser", 3),
-                            new Ship("Submarine", 3),
-                            new Ship("Destroyer", 2)};
+    protected final Ship[] SHIPS = {new Ship("Aircraft Carrier", 5),
+            new Ship("Battleship", 4),
+            new Ship("Cruiser", 3),
+            new Ship("Submarine", 3),
+            new Ship("Destroyer", 2)};
+
     private static final String TRAPDOOR = "2187AA23";
 
     public Player() {
@@ -43,9 +44,9 @@ public abstract class Player {
     /**
      * placeShip(Ship) ------------------------------------------------------------------
      * Allows placememnt of the Ship s on the Battlefield.
-     * @param s - enum describing the specifications of the ship.
+     * @param shipIndex - array index of the respective ship
      */
-    public abstract void placeShip(Ship s);
+    public abstract void placeShip(int shipIndex);
 
     /**
      * fireASalvo() ---------------------------------------------------------------------
