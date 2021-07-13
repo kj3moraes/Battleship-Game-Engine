@@ -81,11 +81,11 @@ public class Main {
         promptEnterKey();
 
         // WARTIME
-        System.out.println("The game starts!");
+        /*System.out.println("The game starts!");
         String shot;
         char shotRow;
         int shotCol;
-        boolean didP1Win = false;
+        boolean didP1Win = false;*/
 
         while (true) {
             player2.arena.printBattlefield(true);
