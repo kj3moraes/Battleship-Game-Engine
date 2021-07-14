@@ -56,7 +56,12 @@ public abstract class Player {
      */
     public abstract String fireASalvo();
 
-    public boolean isNavyAfloat() {
+    /**
+     * isNavySunken() -------------------------------------------------------------------
+     * Determines if all my ships have been hit. Returns true if it has been.
+     * @return - whether or not my navy is all shot down
+     */
+    public boolean isNavySunken() {
         for (int i = 0; i <= Ship.NO_OF_SHIPS; i++) {
             if (!SHIPS.get(i).isShipSunken()) {
                 return false;
@@ -68,7 +73,8 @@ public abstract class Player {
     /**
      * manageShipHit(String) ------------------------------------------------------------
      * Prints appropriate message and handles various inner workings when the opponent
-     * hits our ships.
+     * hits our ships. This function prints out a message notifying the opponent of
+     * the result of their hit (whether or not it sunk one of our ships)
      *
      * REQURIES : The coordinates must be a hit.
      * @param row - opponents salvo row coordinate

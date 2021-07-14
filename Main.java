@@ -95,21 +95,16 @@ public class Main {
             shotRow = shot.charAt(0);
             shotCol = Integer.parseInt(shot.substring(1));
 
-            // APPROPRIATE MESSAGE FOR THE SALVO
+            // APPROPRIATE MESSAGE FOR THE P1's SALVO
             if (player2.arena.isHit(shotRow, shotCol)) {
-                player2.arena.placePiece(shotRow, shotCol, player2.arena.HIT);
-                if (player2.arena.isSunken(shotRow, shotCol)) {
-                    System.out.println("You sank a ship!");
-                } else {
-                    System.out.println("You hit a ship");
-                }
+                player2.manageShipHit(shotRow, shotCol);
             } else if (player2.arena.isMiss(shotRow, shotCol)) {
                 player2.arena.placePiece(shotRow, shotCol, player2.arena.MISS);
                 System.out.println("You missed! Try again next turn");
             }
 
             // DID P1 WIN ?
-            if (!player2.isNavyAfloat()) {
+            if (player2.isNavySunken()) {
                 didP1Win = true;
                 break;
             }
@@ -122,19 +117,14 @@ public class Main {
 
             // APPROPRIATE MESSAGE FOR THE SALVO
             if (player1.arena.isHit(shotRow, shotCol) ) {
-                player1.arena.placePiece(shotRow, shotCol, player1.arena.HIT);
-                if (player1.arena.isSunken(shotRow, shotCol)) {
-                    System.out.println("The engine sank your ship at " + shot);
-                } else {
-                    System.out.println("The engine hit your ship at " + shot);
-                }
+                player1.manageShipHit(shotRow, shotCol);
             } else if (player1.arena.isMiss(shotRow, shotCol)) {
                 player1.arena.placePiece(shotRow, shotCol, player2.arena.MISS);
                 System.out.println("The engine missed.");
             }
 
             // DID P2 WIN ?
-            if (!player1.isNavyAfloat()) {
+            if (player1.isNavySunken()) {
                 break;
             }
         }
@@ -144,7 +134,7 @@ public class Main {
         if (didP1Win)
             System.out.printf("Congrats %s, you have won this game of Battleship!", humanName);
         else
-            System.out.println("The Engine won this game of Battleship!");
+            System.out.printf("The %s Engine won this game of Battleship!", player2.getName());
     }
 
     private static void promptEnterKey() {

@@ -49,13 +49,15 @@ public class Ship {
 
     /**
      * removeShipPart(String) -----------------------------------------------------------
-     * Removes a part of the ship that has been hit by the salvo
+     * Removes a part of the ship if it has been hit by the salvo specified by the
+     * coordinates. Does nothing otherwise.
      *
      * REQUIRES : salvoCoordinates must be a hit.
-     * @param salvoCoordinate - coordinate of the salvo.
+     * @param row - row coordinate of the salvo.
+     * @param col - column coordinate of the salvo.
      */
-    public void removeShipPart(String salvoCoordinate) {
-        position.remove(salvoCoordinate);
+    public void removeShipPart(char row, int col) {
+        position.remove(row + "" + col);
     }
 
     /**

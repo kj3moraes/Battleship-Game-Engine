@@ -1,4 +1,6 @@
 package Players;
+import Services.Ship;
+
 import java.util.Scanner;
 
 public class Human extends Player {
@@ -72,6 +74,14 @@ public class Human extends Player {
 
     @Override
     public void manageShipHit(char row, int col) {
-
+        for (int i = 0; i < Ship.NO_OF_SHIPS; i++) {
+            SHIPS.get(i).removeShipPart(row, col);
+            if (SHIPS.get(i).isShipSunken()) {
+                System.out.println("The engine has sunken your " + SHIPS.get(i).getShipName() +" at " + row + "" + col);
+                SHIPS.remove(i);
+            } else {
+                System.out.println("The engine has hit your " + SHIPS.get(i).getShipName() +" at " + row + "" + col);
+            }
+        }
     }
 }//end of class
