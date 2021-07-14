@@ -15,6 +15,7 @@ public class Battlefield {
     //CODES FOR COORDINATE PLACEMENT
     public static final int VALID_COORD = 0x0F;
 
+    // VALID ERROR CODES
     private static final int TOUCHING = 0x1C;
     private static final int CROSSING = 0xAF;
     private static final int OUT_OF_BOARD = 0xBD;
@@ -135,13 +136,13 @@ public class Battlefield {
      * @param s - enum describing the specifications of the ship.
      * @return - if the coordinates are valid
      */
-    public boolean isCorrectCoordinates(char roF, char roS, int coF, int coS, Ship s) {
+    public int isCorrectCoordinates(char roF, char roS, int coF, int coS, Ship s) {
 
         // CHECK FOR COORDINATES OUTSIDE THE BOARD
         if (roF > 'J' || roF < 'A' || roS > 'J' || roS < 'A') {
-            return false;
+            return OUT_OF_BOARD;
         } else if (coF > 10 || coF < 1 || coS > 10 || coS < 1) {
-            return false;
+            return OUT_OF_BOARD;
         }
 
         // ENSURE THAT WE ARE USING A VALID SHIP
@@ -149,22 +150,26 @@ public class Battlefield {
             // CHECK FOR COORDINATES NOT CORRESPONDING TO STRAIGHT LINES
             if (roF != roS && coF != coS) {
                 System.out.println("Error! Wrong ship location! Try again:");
-                return false;
+                return MISALIGN;
             } else if (roF == roS) {
                 if (Math.abs(coF - coS) + 1 != s.getShipLength()) {
                     System.out.println("Error! Wrong length of the " + s.getShipName() + "! Try again:");
-                    return false;
+                    return WRONG_LENGTH;
                 }
             } else {
                 if (Math.abs(roF - roS) + 1 != s.getShipLength()) {
                     System.out.println("Error! Wrong length of the " + s.getShipName() + "! Try again:");
-                    return false;
+                    return WRONG_LENGTH;
                 }
             }
             // CHECK IF THE SHIP IS CROSSING OUR TOUCHING ANY OTHER PRE-EXISTING SHIP
-            return !isCrossing(roF, roS, coF, coS) && !isTouching(roF, roS, coF, coS, false);
+            if (isCrossing(roF, roS, coF, coS)) {
+                return CROSSING;
+            } else if (isTouching(roF, roS, coF, coS, false)) {
+                return TOUCHING;
+            }
         }
-        return true;
+        return VALID_COORD;
     }
 
     /**
@@ -248,7 +253,14 @@ public class Battlefield {
         return false;
     }
 
-    public void analyzeErrorInPlacement(int errorOut) {
+    /**
+     * analyzeErrorInPlacement(int) ------------------------------------------------------
+     * Prints out the appropriate message for the specified error code.
+     *
+     * REQUIRES : errorOut must be a VALID ERROR CODE as defined at the start
+     * @param errorOut - a valid error code
+     */
+    public static void analyzeErrorInPlacement(int errorOut) {
         switch (errorOut) {
             case TOUCHING -> System.out.print("You placed the ships too close to each other");
             case CROSSING -> System.out.print("Your ship cannot cross another ship");

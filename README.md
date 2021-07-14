@@ -20,10 +20,10 @@ From then on, follow the Battleship Playing Guide.
 **Class Descriptions**
 * `Main.java` - houses all the interacting piece. Is the executable file to play the game
 * `Ship.java` - class containing the specifications of the Ships used and its respective position on the Battlefield
-* `Battlefield.java`- class that provides template for the Battlefield object - the playable arena
+* `Battlefield.java`- class that provides the playable arena
 * `Player.java` - abstract class outlining how a player should play
     * `Human.java` - a human player 
-    * `BattleshipEngine.java` - a machine player 
+    * `BattleshipEngine.java` - a machine player abstract class
         * `Naive_Solver.java` - the easy engine
         * `Intermediate_Adversary,java` - the medium engine   
         * `Boogeyman.java` - the hard engine

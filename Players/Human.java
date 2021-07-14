@@ -1,4 +1,5 @@
 package Players;
+import Services.Battlefield;
 import Services.Ship;
 
 import java.util.Scanner;
@@ -37,9 +38,10 @@ public class Human extends Player {
             rowOfFirst = (char) Math.min(rowOfFirst, rowOfSecond);
             rowOfSecond = (char) temp;
 
-            if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, SHIPS.get(shipIndex))) {
-                System.out.print("\nError! Invalid Coordinates.");
-                System.out.println("Try again :\n\n");
+            int placementRes = arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, SHIPS.get(shipIndex));
+            if (placementRes != Battlefield.VALID_COORD) {
+                System.out.print("\nError! ");
+                Battlefield.analyzeErrorInPlacement(placementRes);
                 continue;
             }
 
@@ -58,13 +60,15 @@ public class Human extends Player {
         Scanner num = new Scanner(System.in);
         String firingPos;
         while (true) {
-            System.out.print(name + ", enter the firing position : ");
+            System.out.print("\n" + name + ", enter the firing position : ");
             firingPos = trapdoorFilter(num.next().toUpperCase().trim());
 
             char rowCoord = firingPos.charAt(0);
             int columnCoord = Integer.parseInt(firingPos.substring(1));
-            if (!arena.isCorrectCoordinates(rowCoord, 'A', columnCoord, 9, null)) {
-                System.out.println("Error! You entered the wrong coordinates! Try again:");
+            int placementRes = arena.isCorrectCoordinates(rowCoord, 'A', columnCoord, 9, null);
+            if (placementRes != Battlefield.VALID_COORD) {
+                System.out.println("Error! ");
+                Battlefield.analyzeErrorInPlacement(placementRes);
                 continue;
             }
             break;
@@ -74,13 +78,16 @@ public class Human extends Player {
 
     @Override
     public void manageShipHit(char row, int col) {
+        arena.placePiece(row, col, arena.HIT);
         for (int i = 0; i < Ship.NO_OF_SHIPS; i++) {
             SHIPS.get(i).removeShipPart(row, col);
             if (SHIPS.get(i).isShipSunken()) {
-                System.out.println("The engine has sunken your " + SHIPS.get(i).getShipName() +" at " + row + "" + col);
+                System.out.println("The engine has sunken your " + SHIPS.get(i).getShipName() +" at " + row + "" + col
+                +". Make them pay!");
                 SHIPS.remove(i);
             } else {
-                System.out.println("The engine has hit your " + SHIPS.get(i).getShipName() +" at " + row + "" + col);
+                System.out.println("The engine has hit your " + SHIPS.get(i).getShipName() +" at " + row + "" + col
+                + ". Fire back!");
             }
         }
     }

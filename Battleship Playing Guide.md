@@ -148,7 +148,7 @@ missed. This will be clearly displayed for P1 to view as well. So after P2's sho
 
 
 ```
-The enemy hit your ship at I4. Fire back!
+The enemy hit your Battleship at I4. Fire back!
 
   1 2 3 4 5 6 7 8 9 10 
 A ~ X ~ ~ ~ ~ ~ ~ ~ ~ 

@@ -1,4 +1,7 @@
 package Players.Engines;
+
+import Services.Battlefield;
+
 public class NaiveSolver extends BattleshipEngine {
 
     @Override
@@ -10,14 +13,15 @@ public class NaiveSolver extends BattleshipEngine {
         // DECIDE TO GO EITHER HORIZONTAL OR VERTICAL
         int horizontalOrVertical = (int) Math.round(Math.random());
         int NEorSW = (int) Math.round(Math.random());
-
+        int placementRes;
         // HORIZONTAL OR VERTICAL PLACEMENT VIABILITY
         if (horizontalOrVertical == 0) {
             // CAN IT FIT HORIZONTALLY ?
             if (NEorSW == 0 && colStart - SHIPS.get(shipIndex).getShipLength() + 1 >= 1) {
                 // DOES IT FIT HORIZONTALLY AND TO THE LEFT ?
-                if (arena.isCorrectCoordinates(rowStart, rowStart, colStart - SHIPS.get(shipIndex).getShipLength() + 1,
-                        colStart, SHIPS.get(shipIndex))) {
+                placementRes = arena.isCorrectCoordinates(rowStart, rowStart,
+                        colStart - SHIPS.get(shipIndex).getShipLength() + 1, colStart, SHIPS.get(shipIndex));
+                if (placementRes == Battlefield.VALID_COORD) {
                     for (int i = colStart - SHIPS.get(shipIndex).getShipLength() + 1; i <= colStart; i++) {
                         arena.placePiece(rowStart, i, arena.SHIP);
                     }
@@ -28,8 +32,9 @@ public class NaiveSolver extends BattleshipEngine {
                 }
             } else if (NEorSW == 1 && colStart + SHIPS.get(shipIndex).getShipLength() - 1 <= 10) {
                 // DOES IT FIT HORIZONTALLY AND TO THE RIGHT ?
-                if (arena.isCorrectCoordinates(rowStart, rowStart, colStart,
-                        colStart + SHIPS.get(shipIndex).getShipLength() - 1, SHIPS.get(shipIndex))) {
+                placementRes = arena.isCorrectCoordinates(rowStart, rowStart, colStart,
+                        colStart + SHIPS.get(shipIndex).getShipLength() - 1, SHIPS.get(shipIndex));
+                if (placementRes == Battlefield.VALID_COORD) {
                     for (int i = colStart; i <= colStart + SHIPS.get(shipIndex).getShipLength() - 1; i++) {
                         arena.placePiece(rowStart, i, arena.SHIP);
                     }
@@ -44,8 +49,9 @@ public class NaiveSolver extends BattleshipEngine {
             // CAN IT FIT VERTICALLY ?
             if (NEorSW == 0 && rowStart - SHIPS.get(shipIndex).getShipLength() + 1 >= 'A') {
                 // DOES IT FIT VERTICALLY AND UP ?
-                if (arena.isCorrectCoordinates((char) (rowStart - SHIPS.get(shipIndex).getShipLength() + 1),
-                        rowStart, colStart, colStart, SHIPS.get(shipIndex))) {
+                placementRes = arena.isCorrectCoordinates((char) (rowStart - SHIPS.get(shipIndex).getShipLength() + 1),
+                        rowStart, colStart, colStart, SHIPS.get(shipIndex));
+                if (placementRes == Battlefield.VALID_COORD) {
                     for (char i = (char) (rowStart - SHIPS.get(shipIndex).getShipLength() + 1); i <= rowStart; i++) {
                         arena.placePiece(i, colStart, arena.SHIP);
                     }
@@ -56,8 +62,9 @@ public class NaiveSolver extends BattleshipEngine {
                 }
             } else if (NEorSW == 1 && rowStart + SHIPS.get(shipIndex).getShipLength() - 1 <= 'J') {
                 // DOES IT FIT VERTICALLY AND DOWN ?
-                if (arena.isCorrectCoordinates(rowStart, (char) (rowStart + SHIPS.get(shipIndex).getShipLength() - 1),
-                        colStart, colStart, SHIPS.get(shipIndex))) {
+                placementRes = arena.isCorrectCoordinates(rowStart, (char) (rowStart + SHIPS.get(shipIndex).getShipLength() - 1),
+                        colStart, colStart, SHIPS.get(shipIndex));
+                if (placementRes == Battlefield.VALID_COORD) {
                     for (char i = rowStart; i <= rowStart + SHIPS.get(shipIndex).getShipLength() - 1; i++) {
                         arena.placePiece(i, colStart, arena.SHIP);
                     }
