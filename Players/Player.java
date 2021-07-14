@@ -62,12 +62,7 @@ public abstract class Player {
      * @return - whether or not my navy is all shot down
      */
     public boolean isNavySunken() {
-        for (int i = 0; i <= Ship.NO_OF_SHIPS; i++) {
-            if (!SHIPS.get(i).isShipSunken()) {
-                return false;
-            }
-        }
-        return true;
+        return SHIPS.isEmpty();
     }
 
     /**
