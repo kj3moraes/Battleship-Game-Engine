@@ -1,4 +1,4 @@
-package Engines;
+package Players.Engines;
 
 import Services.Battlefield;
 import java.util.List;
@@ -18,7 +18,7 @@ public class IntermediateAdversary extends NaiveSolver {
 
     @Override
     public String fireASalvo() {
-        return "A5";
+        return null;
     }
 
     /**

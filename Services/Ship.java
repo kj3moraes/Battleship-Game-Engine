@@ -1,16 +1,20 @@
 package Services;
 
-public enum Ship {
-    ARC("Aircraft Carrier", 5),
-    BTL("Battleship", 4),
-    CRU("Cruiser", 3),
-    SUB("Submarine", 3),
-    DES("Destroyer", 2);
+import java.util.ArrayList;
 
-    public final String shipName;
-    public final int shipLength;
+public class Ship {
+    public static final int NO_OF_SHIPS = 5;
 
-    Ship(String name, int length) { shipName = name; shipLength = length;}
+    public String shipName;
+    public int shipLength;
+    private final ArrayList<String> position;
+
+
+    public Ship(String name, int length) {
+        this.shipName = name;
+        this.shipLength = length;
+        position = new ArrayList<>();
+    }
 
     public String getShipName() {
         return shipName;
@@ -18,5 +22,51 @@ public enum Ship {
 
     public int getShipLength() {
         return shipLength;
+    }
+
+    /**
+     * storeShipPlacement(char, char, int, int) -----------------------------------------
+     * Stores the coordinates of the Ships placement on the battlefield into the local
+     * Ship coordinate stack.
+     *
+     * REQUIRES : Coordinates must be normalized and a VALID PLACMENT.
+     * @param roF - row of the first coordinate
+     * @param roS - row of the second coordinate
+     * @param coF - column of the first coordinate
+     * @param coS - column of the second coordinate
+     */
+    public void storeShipPlacement(char roF, char roS, int coF, int coS) {
+        if (roF == roS) {
+            for (;coF <= coS; coF++) {
+                position.add(roF + "" + coF);
+            }
+        } else {
+            for (; roF <= roS; roF++) {
+                position.add(roF + "" + coF);
+            }
+        }
+    }
+
+    /**
+     * removeShipPart(String) -----------------------------------------------------------
+     * Removes a part of the ship if it has been hit by the salvo specified by the
+     * coordinates. Does nothing otherwise.
+     *
+     * REQUIRES : salvoCoordinates must be a hit.
+     * @param row - row coordinate of the salvo.
+     * @param col - column coordinate of the salvo.
+     */
+    public void removeShipPart(char row, int col) {
+        position.remove(row + "" + col);
+    }
+
+    /**
+     * isShipSunken() -------------------------------------------------------------------
+     * Determines whether this Ship has been sunken (i.e all the parts of the ship are
+     * hit).
+     * @return - whether or not the Ship is sunken.
+     */
+    public boolean isShipSunken() {
+        return position.isEmpty();
     }
 }

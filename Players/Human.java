@@ -1,5 +1,6 @@
-package Engines;
+package Players;
 import Services.Ship;
+
 import java.util.Scanner;
 
 public class Human extends Player {
@@ -13,10 +14,10 @@ public class Human extends Player {
     }
 
     @Override
-    public void placeShip(Ship s) {
+    public void placeShip(int shipIndex) {
         Scanner sc;
-        System.out.println("\nEnter the coordinates for " + s.getShipName() + " (" +
-                s.getShipLength() + " cells): ");
+        System.out.println("\nEnter the coordinates for " + SHIPS.get(shipIndex).getShipName() + " (" +
+                SHIPS.get(shipIndex).getShipLength() + " cells): ");
         while (true) {
             sc = new Scanner(System.in);
             String firstCoordinate = trapdoorFilter(sc.next().toUpperCase());
@@ -36,7 +37,7 @@ public class Human extends Player {
             rowOfFirst = (char) Math.min(rowOfFirst, rowOfSecond);
             rowOfSecond = (char) temp;
 
-            if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, s)) {
+            if (!arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, SHIPS.get(shipIndex))) {
                 System.out.print("\nError! Invalid Coordinates.");
                 System.out.println("Try again :\n\n");
                 continue;
@@ -47,6 +48,7 @@ public class Human extends Player {
                     arena.placePiece(i, j, arena.SHIP);
                 }
             }
+            SHIPS.get(shipIndex).storeShipPlacement(rowOfFirst, rowOfFirst, columnOfFirst, columnOfSecond);
             break;
         }
     }
@@ -68,5 +70,18 @@ public class Human extends Player {
             break;
         }
         return firingPos;
+    }
+
+    @Override
+    public void manageShipHit(char row, int col) {
+        for (int i = 0; i < Ship.NO_OF_SHIPS; i++) {
+            SHIPS.get(i).removeShipPart(row, col);
+            if (SHIPS.get(i).isShipSunken()) {
+                System.out.println("The engine has sunken your " + SHIPS.get(i).getShipName() +" at " + row + "" + col);
+                SHIPS.remove(i);
+            } else {
+                System.out.println("The engine has hit your " + SHIPS.get(i).getShipName() +" at " + row + "" + col);
+            }
+        }
     }
 }//end of class
