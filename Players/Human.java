@@ -69,4 +69,9 @@ public class Human extends Player {
         }
         return firingPos;
     }
+
+    @Override
+    public void manageShipHit(String hit) {
+
+    }
 }//end of class
