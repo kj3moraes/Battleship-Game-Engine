@@ -1,7 +1,7 @@
 # Battleship Engine Hierarchy
 
                                                      ---------------------
-                                                    (      (PLAYER)       )
+                                                    (        PLAYER       )
                                                      ---------------------
                                                               | 
                                                               |
