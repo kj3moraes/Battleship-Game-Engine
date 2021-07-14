@@ -55,4 +55,14 @@ public abstract class Player {
      * Allows for the Player to fire a shot at the enemies Battlefield.
      */
     public abstract String fireASalvo();
+
+    /**
+     * manageShipHit(String) ------------------------------------------------------------
+     * Prints appropriate message and handles various inner workings when the opponent
+     * hits our ships.
+     *
+     * REQURIES : The string coordinates must be a hit.
+     * @param coord - opponents salvo that hits out ship
+     */
+    public abstract void manageShipHit(String coord);
 }
