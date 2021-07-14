@@ -83,15 +83,20 @@ public class Main {
         // WARTIME
         System.out.println("The game starts!");
         boolean didP1Win = false;
+        String shot;
+        char shotRow;
+        int shotCol;
 
         while (true) {
             player2.arena.printBattlefield(true);
             printDivider();
             player1.arena.printBattlefield(false);
-            player1.fireASalvo();
+            shot = player1.fireASalvo();
+            shotRow = shot.charAt(0);
+            shotCol = Integer.parseInt(shot.substring(1));
 
             // APPROPRIATE MESSAGE FOR THE SALVO
-            /*if (player2.arena.isHit(shotRow, shotCol)) {
+            if (player2.arena.isHit(shotRow, shotCol)) {
                 player2.arena.placePiece(shotRow, shotCol, player2.arena.HIT);
                 if (player2.arena.isSunken(shotRow, shotCol)) {
                     System.out.println("You sank a ship!");
@@ -101,7 +106,7 @@ public class Main {
             } else if (player2.arena.isMiss(shotRow, shotCol)) {
                 player2.arena.placePiece(shotRow, shotCol, player2.arena.MISS);
                 System.out.println("You missed! Try again next turn");
-            }*/
+            }
 
             // DID P1 WIN ?
             if (!player2.isNavyAfloat()) {
@@ -111,10 +116,12 @@ public class Main {
 
             // P2 PLAYS
             System.out.println("Please wait while the engine makes its move");
-            player2.fireASalvo();
+            shot = player2.fireASalvo();
+            shotRow = shot.charAt(0);
+            shotCol = Integer.parseInt(shot.substring(1));
 
             // APPROPRIATE MESSAGE FOR THE SALVO
-            /*if (player1.arena.isHit(shotRow, shotCol) ) {
+            if (player1.arena.isHit(shotRow, shotCol) ) {
                 player1.arena.placePiece(shotRow, shotCol, player1.arena.HIT);
                 if (player1.arena.isSunken(shotRow, shotCol)) {
                     System.out.println("The engine sank your ship at " + shot);
@@ -124,7 +131,7 @@ public class Main {
             } else if (player1.arena.isMiss(shotRow, shotCol)) {
                 player1.arena.placePiece(shotRow, shotCol, player2.arena.MISS);
                 System.out.println("The engine missed.");
-            }*/
+            }
 
             // DID P2 WIN ?
             if (!player1.isNavyAfloat()) {

@@ -9,7 +9,7 @@ public class Boogeyman extends BattleshipEngine {
 
     @Override
     public String fireASalvo() {
-
         return null;
     }
+
 }//end of class

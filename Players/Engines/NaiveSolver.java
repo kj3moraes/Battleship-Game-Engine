@@ -72,7 +72,7 @@ public class NaiveSolver extends BattleshipEngine {
     }
 
     @Override
-    public void fireASalvo() {
-        String firingCoordinates = generateRandomMapCoordinates();
+    public String fireASalvo() {
+        return generateRandomMapCoordinates();
     }
 }//end of class

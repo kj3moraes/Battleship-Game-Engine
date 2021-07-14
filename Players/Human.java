@@ -52,7 +52,7 @@ public class Human extends Player {
     }
 
     @Override
-    public void fireASalvo() {
+    public String fireASalvo() {
         Scanner num = new Scanner(System.in);
         String firingPos;
         while (true) {
@@ -71,7 +71,7 @@ public class Human extends Player {
     }
 
     @Override
-    public void manageShipHit(String hit) {
+    public void manageShipHit(char row, int col) {
 
     }
 }//end of class

@@ -54,7 +54,7 @@ public abstract class Player {
      * fireASalvo() ---------------------------------------------------------------------
      * Allows for the Player to fire a shot at the enemies Battlefield.
      */
-    public abstract void fireASalvo();
+    public abstract String fireASalvo();
 
     public boolean isNavyAfloat() {
         for (int i = 0; i <= Ship.NO_OF_SHIPS; i++) {
@@ -70,8 +70,9 @@ public abstract class Player {
      * Prints appropriate message and handles various inner workings when the opponent
      * hits our ships.
      *
-     * REQURIES : The string coordinates must be a hit.
-     * @param coord - opponents salvo that hits out ship
+     * REQURIES : The coordinates must be a hit.
+     * @param row - opponents salvo row coordinate
+     * @param col - opponents salvo column coordinate.
      */
-    public abstract void manageShipHit(String coord);
+    public abstract void manageShipHit(char row, int col);
 }
