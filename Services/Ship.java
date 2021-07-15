@@ -45,14 +45,14 @@ public class Ship {
                 position.add(roF + "" + coF);
             }
         }
-        System.out.println(shipName + " positioned at " + position.toString());
     }
 
     /**
-     *
-     * @param row
-     * @param col
-     * @return
+     * isPartOfShip() -------------------------------------------------------------------
+     * Determines whether the inputed coordinates are part of the Ships position.
+     * @param row - the row coordinate
+     * @param col - the column coordinate
+     * @return - if the coordinate is part of the ships position
      */
     public boolean isPartOfShip(char row, int col) {
         return position.contains(row + "" + col);
