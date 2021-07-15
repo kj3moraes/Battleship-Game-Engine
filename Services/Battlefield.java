@@ -271,18 +271,4 @@ public class Battlefield {
         }
         System.out.println("Try again!");
     }
-
-    /**
-     * isSunken(char, int) --------------------------------------------------------------
-     * Finds out if the hit at position (rowCo, columnCo) is the final hit that sinks
-     * the ship.
-     * REQUIRES :
-     *      - the (rowCo, columnCo) coordinate must be a HIT
-     * @param rowCo - row coordinate of the hit
-     * @param columnCo - column coordinate of the hit
-     * @return - if the ship is sunken or not
-     */
-    public boolean isSunken(char rowCo, int columnCo) {
-        return !isTouching(rowCo, rowCo, columnCo, columnCo, true);
-    }
 }
