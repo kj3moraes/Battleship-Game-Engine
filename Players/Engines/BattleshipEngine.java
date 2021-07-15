@@ -1,7 +1,6 @@
 package Players.Engines;
 
 import Players.Player;
-import Services.Ship;
 
 import java.util.Random;
 
@@ -24,8 +23,11 @@ public abstract class BattleshipEngine extends Player {
     @Override
     public void manageShipHit(char row, int col) {
         arena.placePiece(row, col, arena.HIT);
-        for (int i = 0; i < Ship.NO_OF_SHIPS; i++) {
-            SHIPS.get(i).removeShipPart(row, col);
+        int length = SHIPS.size();
+        for (int i = 0; i < length; i++) {
+            if (!SHIPS.get(i).isPartOfShip(row, col))
+                continue;
+            SHIPS.get(i).removeShipPartAndReport(row, col);
             if (SHIPS.get(i).isShipSunken()) {
                 System.out.println("You sank a ship!");
                 SHIPS.remove(i);

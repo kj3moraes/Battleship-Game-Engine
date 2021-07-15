@@ -64,7 +64,7 @@ public class Main {
         System.out.println("\nPlayer 1, place your ships on the game field\n");
         player1.arena.printBattlefield(false);
         for (int i = 0; i < NO_OF_SHIPS; i++) {
-            player1.placeShip(0);
+            player1.placeShip(i);
             player1.arena.printBattlefield(false);
         }
 

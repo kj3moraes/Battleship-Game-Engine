@@ -149,16 +149,13 @@ public class Battlefield {
         if (s != null) {
             // CHECK FOR COORDINATES NOT CORRESPONDING TO STRAIGHT LINES
             if (roF != roS && coF != coS) {
-                System.out.println("Error! Wrong ship location! Try again:");
                 return MISALIGN;
             } else if (roF == roS) {
                 if (Math.abs(coF - coS) + 1 != s.getShipLength()) {
-                    System.out.println("Error! Wrong length of the " + s.getShipName() + "! Try again:");
                     return WRONG_LENGTH;
                 }
             } else {
                 if (Math.abs(roF - roS) + 1 != s.getShipLength()) {
-                    System.out.println("Error! Wrong length of the " + s.getShipName() + "! Try again:");
                     return WRONG_LENGTH;
                 }
             }
@@ -188,7 +185,6 @@ public class Battlefield {
         for (int i = roF - 65; i <= roS - 65; i++) {
             for (int j = coF - 1; j <= coS - 1; j++) {
                 if (battlefield[i][j] == SHIP) {
-                    System.out.println("Error! Your ships cannot cross one another. Try again:");
                     return true;
                 }
             }
@@ -245,7 +241,6 @@ public class Battlefield {
                     return true;
                 }
                 if (touch) {
-                    System.out.println("Error! You placed it too close to another one. \nTry again!");
                     return true;
                 }
             }
@@ -269,6 +264,6 @@ public class Battlefield {
             case MISALIGN -> System.out.print("The placement is not aligned horizontally or vertically");
             case WRONG_LENGTH -> System.out.print("Your placement has wrong length");
         }
-        System.out.println("Try again!");
+        System.out.println(". Try again!");
     }
 }

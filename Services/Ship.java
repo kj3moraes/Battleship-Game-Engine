@@ -29,7 +29,7 @@ public class Ship {
      * Stores the coordinates of the Ships placement on the battlefield into the local
      * Ship coordinate stack.
      *
-     * REQUIRES : Coordinates must be normalized and a VALID PLACMENT.
+     * REQUIRES : Coordinates must be normalized and a VALID PLACEMENT.
      * @param roF - row of the first coordinate
      * @param roS - row of the second coordinate
      * @param coF - column of the first coordinate
@@ -45,18 +45,29 @@ public class Ship {
                 position.add(roF + "" + coF);
             }
         }
+        System.out.println(shipName + " positioned at " + position.toString());
+    }
+
+    /**
+     *
+     * @param row
+     * @param col
+     * @return
+     */
+    public boolean isPartOfShip(char row, int col) {
+        return position.contains(row + "" + col);
     }
 
     /**
      * removeShipPart(String) -----------------------------------------------------------
-     * Removes a part of the ship if it has been hit by the salvo specified by the
-     * coordinates. Does nothing otherwise.
+     * Removes a part of the ship if that has been hit by the salvo specified by the
+     * coordinates.
      *
      * REQUIRES : salvoCoordinates must be a hit.
      * @param row - row coordinate of the salvo.
      * @param col - column coordinate of the salvo.
      */
-    public void removeShipPart(char row, int col) {
+    public void removeShipPartAndReport(char row, int col) {
         position.remove(row + "" + col);
     }
 

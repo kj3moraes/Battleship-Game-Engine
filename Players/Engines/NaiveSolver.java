@@ -14,10 +14,12 @@ public class NaiveSolver extends BattleshipEngine {
         int horizontalOrVertical = (int) Math.round(Math.random());
         int NEorSW = (int) Math.round(Math.random());
         int placementRes;
+
         // HORIZONTAL OR VERTICAL PLACEMENT VIABILITY
         if (horizontalOrVertical == 0) {
             // CAN IT FIT HORIZONTALLY ?
             if (NEorSW == 0 && colStart - SHIPS.get(shipIndex).getShipLength() + 1 >= 1) {
+
                 // DOES IT FIT HORIZONTALLY AND TO THE LEFT ?
                 placementRes = arena.isCorrectCoordinates(rowStart, rowStart,
                         colStart - SHIPS.get(shipIndex).getShipLength() + 1, colStart, SHIPS.get(shipIndex));
@@ -31,6 +33,7 @@ public class NaiveSolver extends BattleshipEngine {
                     return;
                 }
             } else if (NEorSW == 1 && colStart + SHIPS.get(shipIndex).getShipLength() - 1 <= 10) {
+
                 // DOES IT FIT HORIZONTALLY AND TO THE RIGHT ?
                 placementRes = arena.isCorrectCoordinates(rowStart, rowStart, colStart,
                         colStart + SHIPS.get(shipIndex).getShipLength() - 1, SHIPS.get(shipIndex));
@@ -48,6 +51,7 @@ public class NaiveSolver extends BattleshipEngine {
         } else {
             // CAN IT FIT VERTICALLY ?
             if (NEorSW == 0 && rowStart - SHIPS.get(shipIndex).getShipLength() + 1 >= 'A') {
+
                 // DOES IT FIT VERTICALLY AND UP ?
                 placementRes = arena.isCorrectCoordinates((char) (rowStart - SHIPS.get(shipIndex).getShipLength() + 1),
                         rowStart, colStart, colStart, SHIPS.get(shipIndex));
@@ -61,6 +65,7 @@ public class NaiveSolver extends BattleshipEngine {
                     return;
                 }
             } else if (NEorSW == 1 && rowStart + SHIPS.get(shipIndex).getShipLength() - 1 <= 'J') {
+
                 // DOES IT FIT VERTICALLY AND DOWN ?
                 placementRes = arena.isCorrectCoordinates(rowStart, (char) (rowStart + SHIPS.get(shipIndex).getShipLength() - 1),
                         colStart, colStart, SHIPS.get(shipIndex));
@@ -69,8 +74,8 @@ public class NaiveSolver extends BattleshipEngine {
                         arena.placePiece(i, colStart, arena.SHIP);
                     }
                     
-                    SHIPS.get(shipIndex).storeShipPlacement((char) (rowStart + SHIPS.get(shipIndex).getShipLength() - 1),
-                            rowStart, colStart, colStart);
+                    SHIPS.get(shipIndex).storeShipPlacement(rowStart, (char) (rowStart + SHIPS.get(shipIndex).getShipLength() - 1)
+                            , colStart, colStart);
                     return;
                 }
             }

@@ -19,6 +19,7 @@ public abstract class Player {
     public Player(String name) {
         this.name = name;
         arena = new Battlefield();
+        SHIPS = new ArrayList<>();
         SHIPS.add(new Ship("Aircraft Carrier", 5));
         SHIPS.add(new Ship("Battleship", 4));
         SHIPS.add(new Ship("Cruiser", 3));
