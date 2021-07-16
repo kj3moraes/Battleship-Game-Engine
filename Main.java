@@ -1,6 +1,7 @@
 
 import Players.*;
 import Players.Engines.*;
+import Services.Ship;
 
 import java.util.Scanner;
 import static java.util.stream.IntStream.range;
@@ -8,7 +9,6 @@ import static java.util.stream.IntStream.range;
 public class Main {
     public static void main(String[] args) {
         Scanner txt = new Scanner(System.in), setup = new Scanner(System.in);
-        final int NO_OF_SHIPS = 5;
 
         // DEFINING THE PLAYERS
         Human player1;
@@ -63,7 +63,7 @@ public class Main {
         // PLAYER 1 NAVY SETUP
         System.out.println("\nPlayer 1, place your ships on the game field\n");
         player1.arena.printBattlefield(false);
-        for (int i = 0; i < NO_OF_SHIPS; i++) {
+        for (int i = 0; i < Ship.NO_OF_SHIPS; i++) {
             player1.placeShip(i);
             player1.arena.printBattlefield(false);
         }
@@ -72,10 +72,11 @@ public class Main {
 
         // PLAYER 2 NAVY SETUP
         System.out.println("\nKindly wait while the machine places its ships");
-        for (int i = 0; i < NO_OF_SHIPS; i++) {
+        for (int i = 0; i < Ship.NO_OF_SHIPS; i++) {
             assert player2 != null;
             player2.placeShip(i);
         }
+        System.out.println("\nThe machine has completed placing its ships!\n");
         player2.arena.printBattlefield(false);
 
         promptEnterKey();
@@ -102,7 +103,7 @@ public class Main {
                 player2.arena.placePiece(shotRow, shotCol, player2.arena.MISS);
                 System.out.println("You missed! Try again next turn");
             }
-
+            // clearScreen();
             // DID P1 WIN ?
             if (player2.isNavySunken()) {
                 didP1Win = true;
@@ -110,7 +111,7 @@ public class Main {
             }
 
             // P2 PLAYS
-            System.out.println("Please wait while the engine makes its move");
+            System.out.println("\nPlease wait while the engine makes its move");
             shot = player2.fireASalvo();
             shotRow = shot.charAt(0);
             shotCol = Integer.parseInt(shot.substring(1));

@@ -34,6 +34,7 @@ public abstract class BattleshipEngine extends Player {
             } else {
                 System.out.println("You hit a ship!");
             }
+            break;
         }
     }
 
