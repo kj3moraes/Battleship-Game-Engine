@@ -92,6 +92,7 @@ public class Human extends Player {
                 System.out.println("The engine has hit your " + SHIPS.get(i).getShipName() +" at " + row + "" + col
                 + ". Fire back!");
             }
+            break;
         }
     }
 }//end of class
