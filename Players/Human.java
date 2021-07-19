@@ -15,7 +15,7 @@ public class Human extends Player {
     }
 
     @Override
-    public void placeShip(int shipIndex) {
+    public void placeShip(int shipIndex) throws NumberFormatException {
         Scanner sc;
         System.out.println("\nEnter the coordinates for " + SHIPS.get(shipIndex).getShipName() + " (" +
                 SHIPS.get(shipIndex).getShipLength() + " cells): ");

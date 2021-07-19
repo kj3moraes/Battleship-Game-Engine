@@ -9,7 +9,7 @@ public abstract class BattleshipEngine extends Player {
 
     /**
      * generateRandomMapCoordinates() ---------------------------------------------------
-     * generates any valid coordinates on the Battlefield. This includes any
+     * Generates any valid coordinates on the Battlefield. This includes any
      * coordinate with 'A' <= row <= 'J' and 1 <= column <= 10
      * @return - the random map coordinate as a String
      */

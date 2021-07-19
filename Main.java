@@ -92,6 +92,7 @@ public class Main {
             player2.arena.printBattlefield(true);
             printDivider();
             player1.arena.printBattlefield(false);
+
             shot = player1.fireASalvo();
             shotRow = shot.charAt(0);
             shotCol = Integer.parseInt(shot.substring(1));
@@ -121,7 +122,7 @@ public class Main {
                 player1.manageShipHit(shotRow, shotCol);
             } else if (player1.arena.isMiss(shotRow, shotCol)) {
                 player1.arena.placePiece(shotRow, shotCol, player2.arena.MISS);
-                System.out.println("The engine missed.");
+                System.out.println("The engine fired at " + shot + " and missed.");
             }
 
             // DID P2 WIN ?
