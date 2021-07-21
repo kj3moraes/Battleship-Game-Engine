@@ -1,6 +1,7 @@
 package Services;
+
 import java.util.Arrays;
-import Services.Ship;
+
 public class Battlefield {
     private final char[][] battlefield;
 
@@ -162,7 +163,7 @@ public class Battlefield {
             // CHECK IF THE SHIP IS CROSSING OUR TOUCHING ANY OTHER PRE-EXISTING SHIP
             if (isCrossing(roF, roS, coF, coS)) {
                 return CROSSING;
-            } else if (isTouching(roF, roS, coF, coS, false)) {
+            } else if (isTouching(roF, roS, coF, coS)) {
                 return TOUCHING;
             }
         }
@@ -202,10 +203,9 @@ public class Battlefield {
      * @param roS - row of the second coordinate
      * @param coF - column of the first coordinate
      * @param coS - column of the second coordinate
-     * @param isWartime - specifies if we are playing during the second phase
      * @return - if the ship is touching any others (during setup)
      */
-    public boolean isTouching(char roF, char roS, int coF, int coS, boolean isWartime) {
+    public boolean isTouching(char roF, char roS, int coF, int coS) {
         // CHECK FOR TOUCHING OTHER SHIPS OR PIECES OF SHIPS
         boolean touch = false;
         for (int i = roF - 65; i <= roS - 65; i++) {
@@ -236,9 +236,6 @@ public class Battlefield {
                         touch = battlefield[i][coF - 2] == SHIP || touch;
                     if (coS <= 9)
                         touch = battlefield[i][coS] == SHIP || touch;
-                }
-                if (touch && isWartime) {
-                    return true;
                 }
                 if (touch) {
                     return true;

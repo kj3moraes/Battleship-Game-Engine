@@ -12,6 +12,11 @@ public class IntermediateAdversary extends NaiveSolver {
     private ArrayList<Integer> hunts;
     private Stack<Integer> targetsFired;
 
+    /**
+     * DEFINITIONS
+     *
+     */
+
     public IntermediateAdversary() {
         rng = new Random();
         enemyArena = new Battlefield();
@@ -52,13 +57,50 @@ public class IntermediateAdversary extends NaiveSolver {
      * @param targets - parameter to create a list
      * @param hunts - parameter to c
      */
-    private void createTargets(List<Integer> targets, List<Integer> hunts) {
+    private void createTargets(ArrayList<Integer> targets, ArrayList<Integer> hunts) {
+        // TARGETS : All squares
+        for (int i = 0; i < 100; i++) {
+            targets.add(i);
+        }
 
+        // HUNTING : All even parity squares
+        for (int i = 1; i < 100; i+=2) {
+            if (Math.floor((float) i / 10) % 2 == 0) {
+                hunts.add(i);
+            } else if (Math.floor((float) i / 10) % 2 == 1) {
+                hunts.add(i - 1);
+            }
+        }
     }
 
-/*    private String hunt() {
+    /**
+     * huntSquares() --------------------------------------------------------------------
+     * Occurs at the start of the Wartime when no opponent ship is located. Picks out
+     * random squares from the 'hunts' ArrayList and then removes them from huntList
+     * if they are out of play.
+     * @return - coordinates for hunting.
+     */
+    private String huntSquares() {
+        String target;
+        targetsFired.empty();
+        int randIndex = 0, randHuntSqaure = 0;
 
+        // STEP 1.1 : GENERATE HUNT COORDINATES (if we still have sqaures left)
+        if (!hunts.isEmpty()) {
+            randIndex = (int) rng.nextInt(hunts.size());
+        }
+        // STEP 1.2 : PICK FROM TARGET LIST
+        else {
+            randIndex = (int) rng.nextInt(targets.size());
+        }
+        randHuntSqaure = hunts.get(randIndex);
+
+        // STEP 2 : DECODE FROM Integer TO Battlefield Coordinates
+        target = decode(randHuntSqaure);
+
+        // STEP 3 : REMOVE THE HUNTING COORDINATES FROM hunts AND targets
+        hunts.remove(randHuntSqaure);
+        targets.remove(randHuntSqaure);
         return target;
-    }*/
-
+    }
 }//end of class
