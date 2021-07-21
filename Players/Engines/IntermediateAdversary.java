@@ -12,14 +12,24 @@ public class IntermediateAdversary extends NaiveSolver {
     private ArrayList<Integer> hunts;
     private Stack<Integer> targetsFired;
 
-    /**
-     * DEFINITIONS
+    /** DEFINITIONS ---------------------------------------------------------------------
+     *  > ENCODED COORDINATES
+     *      This is the the integer representation of the Battlefield coordinates. It
+     *      spans from 0-99 and is as follows :
+     *          A   B   C   D   E  ...
+     *       1  0   1   2   3   4  ...
+     *       2  10  11  12  13  14 ...
+     *       3          ...
      *
+     *       All the 'A' column are 0 mod 10. All the 'B' columns are 1 mod 10 and so on
      */
 
     public IntermediateAdversary() {
         rng = new Random();
         enemyArena = new Battlefield();
+        targets = new ArrayList<>();
+        hunts = new ArrayList<>();
+        targetsFired = new Stack<>();
     }
 
     /**
