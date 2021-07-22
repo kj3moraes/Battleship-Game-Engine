@@ -1,6 +1,5 @@
 package Players;
 import Services.Battlefield;
-import Services.Ship;
 
 import java.util.Scanner;
 
@@ -17,8 +16,8 @@ public class Human extends Player {
     @Override
     public void placeShip(int shipIndex) throws NumberFormatException {
         Scanner sc;
-        System.out.println("\nEnter the coordinates for " + SHIPS.get(shipIndex).getShipName() + " (" +
-                SHIPS.get(shipIndex).getShipLength() + " cells): ");
+        System.out.println("\nEnter the coordinates for " + ships.get(shipIndex).getShipName() + " (" +
+                ships.get(shipIndex).getShipLength() + " cells): ");
         while (true) {
             sc = new Scanner(System.in);
             String firstCoordinate = trapdoorFilter(sc.next().toUpperCase());
@@ -38,7 +37,7 @@ public class Human extends Player {
             rowOfFirst = (char) Math.min(rowOfFirst, rowOfSecond);
             rowOfSecond = (char) temp;
 
-            int placementRes = arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, SHIPS.get(shipIndex));
+            int placementRes = arena.isCorrectCoordinates(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond, ships.get(shipIndex));
             if (placementRes != Battlefield.VALID_COORD) {
                 System.out.print("\nError! ");
                 Battlefield.analyzeErrorInPlacement(placementRes);
@@ -50,7 +49,7 @@ public class Human extends Player {
                     arena.placePiece(i, j, arena.SHIP);
                 }
             }
-            SHIPS.get(shipIndex).storeShipPlacement(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond);
+            ships.get(shipIndex).storeShipPlacement(rowOfFirst, rowOfSecond, columnOfFirst, columnOfSecond);
             break;
         }
     }
@@ -79,17 +78,17 @@ public class Human extends Player {
     @Override
     public void manageShipHit(char row, int col) {
         arena.placePiece(row, col, arena.HIT);
-        int length = SHIPS.size();
+        int length = ships.size();
         for (int i = 0; i < length; i++) {
-            if (!SHIPS.get(i).isPartOfShip(row, col))
+            if (!ships.get(i).isPartOfShip(row, col))
                 continue;
-            SHIPS.get(i).removeShipPartAndReport(row, col);
-            if (SHIPS.get(i).isShipSunken()) {
-                System.out.println("The engine has sunken your " + SHIPS.get(i).getShipName() +" at " + row + "" + col
+            ships.get(i).removeShipPartAndReport(row, col);
+            if (ships.get(i).isShipSunken()) {
+                System.out.println("The engine has sunken your " + ships.get(i).getShipName() +" at " + row + "" + col
                 +". Make them pay!");
-                SHIPS.remove(i);
+                ships.remove(i);
             } else {
-                System.out.println("The engine has hit your " + SHIPS.get(i).getShipName() +" at " + row + "" + col
+                System.out.println("The engine has hit your " + ships.get(i).getShipName() +" at " + row + "" + col
                 + ". Fire back!");
             }
             break;

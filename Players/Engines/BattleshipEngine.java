@@ -23,14 +23,14 @@ public abstract class BattleshipEngine extends Player {
     @Override
     public void manageShipHit(char row, int col) {
         arena.placePiece(row, col, arena.HIT);
-        int length = SHIPS.size();
+        int length = ships.size();
         for (int i = 0; i < length; i++) {
-            if (!SHIPS.get(i).isPartOfShip(row, col))
+            if (!ships.get(i).isPartOfShip(row, col))
                 continue;
-            SHIPS.get(i).removeShipPartAndReport(row, col);
-            if (SHIPS.get(i).isShipSunken()) {
+            ships.get(i).removeShipPartAndReport(row, col);
+            if (ships.get(i).isShipSunken()) {
                 System.out.println("You sank a ship!");
-                SHIPS.remove(i);
+                ships.remove(i);
             } else {
                 System.out.println("You hit a ship!");
             }

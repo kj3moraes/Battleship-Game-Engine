@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public abstract class Player {
     String name;
     public Battlefield arena;
-    protected ArrayList<Ship> SHIPS;
+    protected ArrayList<Ship> ships;
 
     private static final String TRAPDOOR = "2187AA23";
 
@@ -19,12 +19,12 @@ public abstract class Player {
     public Player(String name) {
         this.name = name;
         arena = new Battlefield();
-        SHIPS = new ArrayList<>();
-        SHIPS.add(new Ship("Aircraft Carrier", 5));
-        SHIPS.add(new Ship("Battleship", 4));
-        SHIPS.add(new Ship("Cruiser", 3));
-        SHIPS.add(new Ship("Submarine", 3));
-        SHIPS.add(new Ship("Destroyer", 2));
+        ships = new ArrayList<>();
+        ships.add(new Ship("Aircraft Carrier", 5));
+        ships.add(new Ship("Battleship", 4));
+        ships.add(new Ship("Cruiser", 3));
+        ships.add(new Ship("Submarine", 3));
+        ships.add(new Ship("Destroyer", 2));
     }
 
     public String getName() {
@@ -63,7 +63,7 @@ public abstract class Player {
      * @return - whether or not my navy is all shot down
      */
     public boolean isNavySunken() {
-        return SHIPS.isEmpty();
+        return ships.isEmpty();
     }
 
     /**

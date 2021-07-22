@@ -1,13 +1,15 @@
 package Players.Engines;
 
 import Services.Battlefield;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
 public class IntermediateAdversary extends NaiveSolver {
-    Battlefield enemyArena;
+    private boolean IS_TARGETING;
     private ArrayList<Integer> targets;
     private ArrayList<Integer> hunts;
     private Stack<Integer> targetsFired;
@@ -25,8 +27,8 @@ public class IntermediateAdversary extends NaiveSolver {
      */
 
     public IntermediateAdversary() {
+        IS_TARGETING = false;
         rng = new Random();
-        enemyArena = new Battlefield();
         targets = new ArrayList<>();
         hunts = new ArrayList<>();
         targetsFired = new Stack<>();
@@ -62,7 +64,7 @@ public class IntermediateAdversary extends NaiveSolver {
     }
 
     /**
-     * createTargets(List<Integer>, List<Integer>) --------------------------------------
+     * createTargets(ArrayList<Integer>, ArrayList<Integer>) ----------------------------
      * Produces a target list and a hunting list.
      * @param targets - parameter to create a list
      * @param hunts - parameter to c
@@ -93,15 +95,15 @@ public class IntermediateAdversary extends NaiveSolver {
     private String huntSquares() {
         String target;
         targetsFired.empty();
-        int randIndex = 0, randHuntSqaure = 0;
+        int randIndex, randHuntSqaure;
 
         // STEP 1.1 : GENERATE HUNT COORDINATES (if we still have sqaures left)
         if (!hunts.isEmpty()) {
-            randIndex = (int) rng.nextInt(hunts.size());
+            randIndex = rng.nextInt(hunts.size());
         }
         // STEP 1.2 : PICK FROM TARGET LIST
         else {
-            randIndex = (int) rng.nextInt(targets.size());
+            randIndex = rng.nextInt(targets.size());
         }
         randHuntSqaure = hunts.get(randIndex);
 
@@ -111,6 +113,17 @@ public class IntermediateAdversary extends NaiveSolver {
         // STEP 3 : REMOVE THE HUNTING COORDINATES FROM hunts AND targets
         hunts.remove(randHuntSqaure);
         targets.remove(randHuntSqaure);
+        return target;
+    }
+
+    /**
+     * targetShip(int, bool) ------------------------------------------------------------
+     * Determines the next firing position of h
+     * @param isHit - if the previous shot was a hit
+     * @return - the target of current salvo
+     */
+    private String targetShip(boolean isHit) {
+        String target = null;
         return target;
     }
 }//end of class
