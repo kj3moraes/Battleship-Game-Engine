@@ -6,7 +6,7 @@ import Services.Ship;
 import java.util.ArrayList;
 
 public abstract class Player {
-    String name;
+    protected String name;
     public Battlefield arena;
     protected ArrayList<Ship> ships;
 

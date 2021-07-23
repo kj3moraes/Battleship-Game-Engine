@@ -50,6 +50,7 @@ public class Main {
                     break;
 
                 case 'B' :
+                    player2 = new Boogeyman();
                     break;
 
                 default:
@@ -59,6 +60,7 @@ public class Main {
             break;
         } while (engine != 'N' || engine != 'I' || engine != 'B');
 
+        // ============================= GAME BEGINS ====================================
 
         // PLAYER 1 NAVY SETUP
         System.out.println("\nPlayer 1, place your ships on the game field\n");

@@ -13,20 +13,22 @@ public class IntermediateAdversary extends NaiveSolver {
     private ArrayList<Integer> targets;
     private ArrayList<Integer> hunts;
     private Stack<Integer> targetsFired;
+    private String previousShot;
 
     /** DEFINITIONS ---------------------------------------------------------------------
      *  > ENCODED COORDINATES
      *      This is the the integer representation of the Battlefield coordinates. It
      *      spans from 0-99 and is as follows :
-     *          A   B   C   D   E  ...
-     *       1  0   1   2   3   4  ...
-     *       2  10  11  12  13  14 ...
+     *          A   B   C   D   E  ...  J
+     *       1  0   1   2   3   4  ...  9
+     *       2  10  11  12  13  14 ...  19
      *       3          ...
      *
      *       All the 'A' column are 0 mod 10. All the 'B' columns are 1 mod 10 and so on
      */
 
     public IntermediateAdversary() {
+        this.name = "In";
         IS_TARGETING = false;
         rng = new Random();
         targets = new ArrayList<>();
@@ -60,6 +62,12 @@ public class IntermediateAdversary extends NaiveSolver {
 
     @Override
     public String fireASalvo() {
+        String target;
+        if (IS_TARGETING == true) {
+            target = null;
+        } else {
+            target = huntSquares();
+        }
         return null;
     }
 
@@ -119,11 +127,42 @@ public class IntermediateAdversary extends NaiveSolver {
     /**
      * targetShip(int, bool) ------------------------------------------------------------
      * Determines the next firing position of h
-     * @param isHit - if the previous shot was a hit
+     * @param isHit - if the previous salvo was a hit
+     * @param previousShot - coordinates of  the previous salvo
      * @return - the target of current salvo
      */
-    private String targetShip(boolean isHit) {
-        String target = null;
+    private String targetShip(String previousShot, boolean isHit) {
+        String target;
+        int startingTarget = encode(previousShot);
+
+        // STEP 1 : CALCULATE ALL THE POSITIONS AROUND THE TARGET SHOT
+        int north = startingTarget - 10;
+        int south = startingTarget + 10;
+        int east = startingTarget + 1;
+        int west = startingTarget - 1;
+
+        // STEP 2 : DECIDE WHICH COORDINATES TO FIRE AT ARE VALID
+        if (targets.contains(north) && targetsFired.contains(north)) {
+            targetsFired.push(north);
+        } else if (targets.contains(south) && targetsFired.contains(south)) {
+            targetsFired.push(south);
+        } else if (targets.contains(east) && targetsFired.contains(east)) {
+            targetsFired.push(east);
+        } else if (targets.contains(west) && targetsFired.contains(west)) {
+            targetsFired.push(west);
+        }
+
+        // STEP 3.1 : RESUME HUNT MODE IF NO FIRING COORDINATES ARE VALID
+        if (targetsFired.isEmpty()) {
+            return huntSquares();
+        }
+
+        // STEP 3.2 : CHOOSE THE TOPMOST FIRING COORDINATE
+        int coordinateToFireAt = targetsFired.pop();
+        if (hunts.contains(coordinateToFireAt)) {
+            hunts.remove(hunts.get(coordinateToFireAt));
+        }
+        target = decode(coordinateToFireAt);
         return target;
     }
 }//end of class
