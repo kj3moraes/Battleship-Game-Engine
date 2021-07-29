@@ -28,4 +28,4 @@ From then on, follow the Battleship Playing Guide.
         * `Intermediate_Adversary,java` - the medium engine   
         * `Boogeyman.java` - the hard engine
 
-This repo
+This repository is licensed under the MIT License. Refer to the LICENSE file for terms and conditions.
