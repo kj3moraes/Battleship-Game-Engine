@@ -1,10 +1,6 @@
 package Players.Engines;
 
-import Services.Battlefield;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
@@ -63,12 +59,33 @@ public class IntermediateAdversary extends NaiveSolver {
     @Override
     public String fireASalvo() {
         String target;
-        if (IS_TARGETING == true) {
+        if (IS_TARGETING) {
             target = null;
         } else {
             target = huntSquares();
         }
         return null;
+    }
+
+    @Override
+    public void manageShipHit(char row, int col) {
+        arena.placePiece(row, col, arena.HIT);
+        int length = ships.size();
+        for (int i = 0; i < length; i++) {
+            if (!ships.get(i).isPartOfShip(row, col))
+                continue;
+
+            ships.get(i).removeShipPartAndReport(row, col);
+            if (ships.get(i).isShipSunken()) {
+                System.out.println("You sank a ship!");
+                ships.remove(i);
+                IS_TARGETING = false;
+            } else {
+                System.out.println("You hit a ship!");
+                IS_TARGETING = true;
+            }
+            break;
+        }
     }
 
     /**
@@ -95,9 +112,9 @@ public class IntermediateAdversary extends NaiveSolver {
 
     /**
      * huntSquares() --------------------------------------------------------------------
-     * Occurs at the start of the Wartime when no opponent ship is located. Picks out
-     * random squares from the 'hunts' ArrayList and then removes them from huntList
-     * if they are out of play.
+     * Occurs at the start of the Wartime and when no opponent ship is initially hit.
+     * Picks out random squares from the 'hunts' ArrayList and then removes them from
+     * huntList if they are out of play.
      * @return - coordinates for hunting.
      */
     private String huntSquares() {
@@ -128,7 +145,7 @@ public class IntermediateAdversary extends NaiveSolver {
      * targetShip(int, bool) ------------------------------------------------------------
      * Determines the next firing position of h
      * @param isHit - if the previous salvo was a hit
-     * @param previousShot - coordinates of  the previous salvo
+     * @param previousShot - coordinates of the previous salvo
      * @return - the target of current salvo
      */
     private String targetShip(String previousShot, boolean isHit) {
